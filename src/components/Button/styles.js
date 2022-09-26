@@ -64,7 +64,7 @@ export const useButtonStyles = () => ({
     padding: "3px",
     margin: "2px",
     "&:hover": {
-      backgroundColor: "transparent",
+      backgroundColor: "transparent !important",
     },
     "&:active": {
       color: theme.palette.primary.greenActive,
@@ -72,18 +72,19 @@ export const useButtonStyles = () => ({
   },
   buttonLink: {
     active: {
-      color: theme.palette.primary.white,
-      fontWeight: "700",
-      fontSize: "18px",
-      justifyContent: "left",
-      marginBottom: "25px",
+      color: `${theme.palette.primary.white} !important`,
+      fontWeight: "700 !important",
+      fontSize: "18px !important",
+      justifyContent: "left !important",
+      marginBottom: "20px !important",
+      textTransform: "none",
     },
     nonActive: {
-      color: theme.palette.primary.white,
-      fontSize: "16px",
-      fontWeight: "400",
-      justifyContent: "left",
-      marginBottom: "25px",
+      color: `${theme.palette.primary.white} !important`,
+      fontSize: "16px !important",
+      fontWeight: "400 !important",
+      justifyContent: "left !important",
+      marginBottom: "25px !important",
     },
     grey: {
       color: theme.palette.grey.grey,
@@ -101,6 +102,7 @@ export const useButtonStyles = () => ({
     },
     "&:hover": {
       fill: theme.palette.primary.main,
+
       "& path": {
         cursor: "pointer",
         fill: theme.palette.primary.main,

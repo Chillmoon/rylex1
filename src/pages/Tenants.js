@@ -40,9 +40,7 @@ export default function Tenants() {
         </Grid>
         <Grid sm={10} xs={7} display="flex" flexDirection="column">
           <NavBar />
-
-          {/* <TenantsTable /> */}
-          {/* <MuiTable /> */}
+          <MuiTable />
         </Grid>
       </Grid>
     </>

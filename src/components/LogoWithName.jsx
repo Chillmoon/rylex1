@@ -21,12 +21,12 @@ export default function LogoWithName({ color }) {
 
       <Typography
         sx={{
-          fontSize: "18px",
+          fontSize: "18px !important",
           color: { color },
-          fontWeight: "700",
+          fontWeight: "700 !important",
           display: "inline-block",
           position: "relative",
-          left: "22%",
+          left: "24%",
           top: "20px",
         }}
       >

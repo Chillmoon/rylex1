@@ -20,10 +20,11 @@ export const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: "Mulish",
+    fontFamily: "Mulish !important",
+
     button: {
       fontWeight: "400",
-      textTransform: "none",
+      textTransform: "none !important",
       lineHeight: "23px",
     },
   },

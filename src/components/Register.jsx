@@ -9,7 +9,6 @@ import SignButton from "./Button/SignButton";
 import MyCheckbox from "./MyCheckbox";
 import * as Yup from "yup";
 import { Formik, Form, ErrorMessage } from "formik";
-import axios from "axios";
 import { signUp } from "./Axios";
 
 export default function Register() {
@@ -19,9 +18,7 @@ export default function Register() {
       .min(3, "Password minimum length should be 3")
       .max(20, "It`s too long")
       .required("Required"),
-    email: Yup.string()
-      .email("Invalid email")
-      .required("Required"),
+    email: Yup.string().email("Invalid email").required("Required"),
     password: Yup.string()
       .min(8, "Password minimum length should be 8")
       .max(32, "It`s too long")
