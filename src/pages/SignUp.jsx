@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Typography, Link } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import Box from "@mui/system/Box";
 import Register from "../components/Register";
 import LogoWithName from "../components/LogoWithName";
@@ -7,6 +7,7 @@ import SocialLinks from "../components/SocialLinks";
 import pattern from "../images/pattern.svg";
 import SignButton from "../components/Button/SignButton";
 import { useNavigate } from "react-router-dom";
+import { theme } from "../styles/Theme";
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -31,14 +32,19 @@ export default function SignUp() {
             alignItems="center"
             textAlign="center"
           >
-            <Typography variant="h3" mb={3} fontWeight="800" color="secondary">
+            <Typography
+              variant="h3"
+              mb={3}
+              fontWeight="800"
+              color={theme.palette.primary.white}
+            >
               Welcome Back!
             </Typography>
 
             <Typography
               variant="subtitle1"
               mb={3}
-              color="secondary"
+              color={theme.palette.primary.white}
               fontWeight="400"
             >
               To keep connected with us please <br /> login with your personal
@@ -67,13 +73,17 @@ export default function SignUp() {
             <Typography
               variant="h3"
               fontWeight="800"
-              color="primary"
+              color={theme.palette.primary.main}
               sx={{ mt: 3 }}
             >
               Create Account
             </Typography>
             <SocialLinks />
-            <Typography variant="subtitle1" mb={3} color="#949494">
+            <Typography
+              variant="subtitle1"
+              mb={3}
+              color={theme.palette.grey.grey}
+            >
               or use your email for registration
             </Typography>
             <Register />

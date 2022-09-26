@@ -7,7 +7,7 @@ export const logIn = (username, password) => {
       username: username,
       password: password,
     })
-    .then(function(response) {
+    .then(function (response) {
       localStorage.setItem("token", response.data.accessToken);
       const token = localStorage.getItem("token");
       console.log(token);
@@ -22,7 +22,7 @@ export const signUp = (userData) => {
       password: userData.password,
       email: userData.email,
     })
-    .then(function(response) {
+    .then(function (response) {
       console.log(response);
     })
     .catch((err) => err);

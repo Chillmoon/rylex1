@@ -1,7 +1,9 @@
+import { theme } from "../../styles/Theme";
+
 export const useStyles = () => ({
   input: {
     m: 1,
-    background: "#F1FAF7",
+    background: theme.palette.secondary.lightGreen,
     borderRadius: "5px",
     width: "100%",
 
@@ -14,15 +16,15 @@ export const useStyles = () => ({
     },
 
     "&:valid": {
-      border: "1px solid #30B78D",
+      border: `1px solid ${theme.palette.primary.greenActive}`,
     },
 
     "&:invalid": {
-      border: "1px solid #F62727",
+      border: `1px solid ${theme.palette.grey.grey}`,
     },
   },
   searchInput: {
-    background: "#fff",
+    background: theme.palette.primary.white,
     borderRadius: "5px",
     height: "45px",
     width: "400px",
@@ -35,11 +37,11 @@ export const useStyles = () => ({
     },
 
     "&:valid": {
-      border: "1px solid #30B78D",
+      border: `1px solid ${theme.palette.primary.greenActive}`,
     },
 
     "&:invalid": {
-      border: "1px solid #F62727",
+      border: `1px solid ${theme.palette.error.main}`,
     },
   },
 });

@@ -1,8 +1,10 @@
+import { theme } from "../../styles/Theme";
+
 export const useNavBarStyles = () => ({
   appBar: {
     backgroundColor: "transparent",
     boxShadow: "none",
-    borderBottom: "1px solid #C0CECA",
+    borderBottom: `1px solid ${theme.palette.secondary.main}`,
   },
   toolBar: {
     justifyContent: "left",
