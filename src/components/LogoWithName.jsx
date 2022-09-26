@@ -1,0 +1,37 @@
+import React from "react";
+import { Typography, Box } from "@mui/material";
+import Logo from "../images/Logo";
+
+export default function LogoWithName({ color }) {
+  return (
+    <div className="logo" sx={{ position: "relative" }}>
+      <Box
+        sx={{
+          display: "inline-block",
+          position: "relative",
+          left: "20%",
+          top: "33px",
+
+          // left: "130px",
+          // top: "33px",
+        }}
+      >
+        <Logo />
+      </Box>
+
+      <Typography
+        sx={{
+          fontSize: "18px",
+          color: { color },
+          fontWeight: "700",
+          display: "inline-block",
+          position: "relative",
+          left: "22%",
+          top: "20px",
+        }}
+      >
+        Rylex
+      </Typography>
+    </div>
+  );
+}
