@@ -26,7 +26,7 @@ export default function LogoWithName({ color }) {
           fontWeight: "700 !important",
           display: "inline-block",
           position: "relative",
-          left: "24%",
+          left: "22%",
           top: "20px",
         }}
       >

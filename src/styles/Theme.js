@@ -11,6 +11,7 @@ export const theme = createTheme({
     secondary: {
       main: "#C0CECA",
       lightGreen: "#F1FAF7",
+      lostGreen: "#C8C3C3",
     },
     error: {
       main: "#F62727",
@@ -21,7 +22,6 @@ export const theme = createTheme({
   },
   typography: {
     fontFamily: "Mulish !important",
-
     button: {
       fontWeight: "400",
       textTransform: "none !important",

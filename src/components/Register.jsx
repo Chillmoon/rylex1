@@ -38,49 +38,56 @@ export default function Register() {
       validationSchema={SignupSchema}
       onSubmit={(values) => {
         console.log(values);
-        signUp(values);
-        navigate("/signin");
+        signUp(values, () => {
+          navigate("/signin");
+        });
       }}
     >
-      <Form>
-        <Grid xs={12} display="flex" flexDirection="column">
-          <FormControl sx={{ width: "45ch" }}>
-            <MyInput
-              placeholder="Name"
-              id="username"
-              name="username"
-              icon={<PersonOutline />}
-              helperText={<ErrorMessage name="username" />}
-            />
-            <MyInput
-              placeholder="Email"
-              id="email"
-              name="email"
-              icon={<Email />}
-              helperText={<ErrorMessage name="email" />}
-            />
+      {({ errors, touched }) => (
+        <Form>
+          <Grid xs={12} display="flex" flexDirection="column">
+            <FormControl sx={{ width: "45ch" }}>
+              <MyInput
+                touched={touched.username}
+                error={errors.username}
+                placeholder="Name"
+                id="username"
+                name="username"
+                icon={<PersonOutline />}
+              />
+              <MyInput
+                touched={touched.email}
+                error={errors.email}
+                placeholder="Email"
+                id="email"
+                name="email"
+                icon={<Email />}
+              />
+              <MyPasswordInput
+                touched={touched.password}
+                error={errors.password}
+                id="password"
+                name="password"
+                placeholder="Password"
+              />
+            </FormControl>
             <MyPasswordInput
-              id="password"
-              name="password"
-              placeholder="Password"
-              helperText={<ErrorMessage name="password" />}
+              touched={touched.confirmPassword}
+              error={errors.confirmPassword}
+              name="confirmPassword"
+              id="confirmPassword"
+              placeholder="Repeat password"
             />
-          </FormControl>
-          <MyPasswordInput
-            name="confirmPassword"
-            id="confirmPassword"
-            placeholder="Repeat password"
-            helperText={<ErrorMessage name="confirmPassword" />}
+            <MyCheckbox name="termsAndConditions" />
+          </Grid>
+          <SignButton
+            text="Sign Up"
+            type="submit"
+            s
+            // icon={<Facebook />}
           />
-          <MyCheckbox name="termsAndConditions" />
-        </Grid>
-        <SignButton
-          text="Sign Up"
-          type="submit"
-          s
-          // icon={<Facebook />}
-        />
-      </Form>
+        </Form>
+      )}
     </Formik>
   );
 }

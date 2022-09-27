@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-export const logIn = (username, password) => {
+export const logIn = (username, password, successCallback) => {
   return axios
     .post("https://api-shark.herokuapp.com/login", {
       username: username,
@@ -10,12 +10,13 @@ export const logIn = (username, password) => {
     .then(function (response) {
       localStorage.setItem("token", response.data.accessToken);
       const token = localStorage.getItem("token");
+      successCallback && successCallback();
       console.log(token);
     })
     .catch((err) => err);
 };
 
-export const signUp = (userData) => {
+export const signUp = (userData, successCallback) => {
   return axios
     .post("https://api-shark.herokuapp.com/signup", {
       username: userData.username,
@@ -24,6 +25,7 @@ export const signUp = (userData) => {
     })
     .then(function (response) {
       console.log(response);
+      successCallback && successCallback();
     })
     .catch((err) => err);
 };

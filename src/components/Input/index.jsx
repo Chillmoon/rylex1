@@ -1,26 +1,50 @@
 import React from "react";
-import { TextField, InputAdornment } from "@mui/material";
+import { TextField, InputAdornment, Typography } from "@mui/material";
 import { useStyles } from "./styles";
-import { Field } from "formik";
+import { ErrorMessage, Field } from "formik";
+import { theme } from "../../styles/Theme";
 
-export default function MyInput({ placeholder, icon, name, helperText, id }) {
+export default function MyInput({
+  placeholder,
+  icon,
+  error,
+  name,
+  id,
+  touched,
+}) {
   const classes = useStyles();
+  console.log(error);
   return (
-    <Field
-      as={TextField}
-      name={name}
-      id={id}
-      helperText={helperText}
-      color="secondary"
-      autoComplete="off"
-      sx={classes.input}
-      InputProps={{
-        startAdornment: (
-          <InputAdornment position="start">{icon}</InputAdornment>
-        ),
-      }}
-      placeholder={placeholder}
-    />
+    <>
+      <Field
+        required
+        error={error}
+        as={TextField}
+        name={name}
+        id={id}
+        // helperText={<ErrorMessage name={name} />}
+        color="secondary"
+        autoComplete="off"
+        sx={classes.input}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">{icon}</InputAdornment>
+          ),
+        }}
+        placeholder={`${placeholder}`}
+      />
+      {{ error } && { touched } && (
+        <Typography
+          sx={{
+            fontSize: "12px",
+          }}
+          variant="subtitle2"
+          color={theme.palette.error.main}
+        >
+          {error}
+        </Typography>
+      )}
+    </>
   );
 }
 

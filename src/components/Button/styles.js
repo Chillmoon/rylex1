@@ -76,7 +76,7 @@ export const useButtonStyles = () => ({
       fontWeight: "700 !important",
       fontSize: "18px !important",
       justifyContent: "left !important",
-      marginBottom: "20px !important",
+      marginBottom: "30px !important",
       textTransform: "none",
     },
     nonActive: {
@@ -84,7 +84,6 @@ export const useButtonStyles = () => ({
       fontSize: "16px !important",
       fontWeight: "400 !important",
       justifyContent: "left !important",
-      marginBottom: "25px !important",
     },
     grey: {
       color: theme.palette.grey.grey,
