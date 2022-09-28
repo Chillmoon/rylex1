@@ -7,6 +7,7 @@ import Login from "../components/Login";
 import pattern2 from "../images/pattern2.svg";
 import SignButton from "../components/Button/SignButton";
 import SocialLinks from "../components/SocialLinks";
+import { theme } from "../styles/Theme";
 
 export default function SignIn() {
   const navigate = useNavigate();
@@ -26,13 +27,17 @@ export default function SignIn() {
             <Typography
               variant="h3"
               fontWeight="800"
-              color="primary"
+              color={theme.palette.primary.main}
               sx={{ mt: 2 }}
             >
               Sign in to Rylex
             </Typography>
             <SocialLinks />
-            <Typography variant="subtitle1" mb={3} color="#949494">
+            <Typography
+              variant="subtitle1"
+              mb={3}
+              color={theme.palette.grey.grey}
+            >
               or use your email account
             </Typography>
             <Login />
@@ -53,14 +58,19 @@ export default function SignIn() {
           }}
         >
           <Box className="left-block">
-            <Typography variant="h3" mb={3} fontWeight="800" color="secondary">
+            <Typography
+              variant="h3"
+              mb={3}
+              fontWeight="800"
+              color={theme.palette.primary.white}
+            >
               Hello, Friend!
             </Typography>
 
             <Typography
               variant="subtitle1"
               mb={3}
-              color="secondary"
+              color={theme.palette.primary.white}
               fontWeight="400"
             >
               Enter your personal details <br /> and start journey with us

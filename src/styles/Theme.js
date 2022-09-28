@@ -4,13 +4,14 @@ export const theme = createTheme({
   palette: {
     primary: {
       white: "#fff",
-      greenPrime: "#1AAA8D",
+      main: "#1AAA8D",
       greenActive: "#30B78D",
       clickButton: "#08795A",
     },
     secondary: {
-      greenStroke: "#C0CECA",
+      main: "#C0CECA",
       lightGreen: "#F1FAF7",
+      lostGreen: "#C8C3C3",
     },
     error: {
       main: "#F62727",
@@ -20,10 +21,10 @@ export const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: "Mulish",
+    fontFamily: "Mulish !important",
     button: {
       fontWeight: "400",
-      textTransform: "none",
+      textTransform: "none !important",
       lineHeight: "23px",
     },
   },
