@@ -1,27 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Grid, FormControl, Link, Typography } from "@mui/material";
+import { Grid, FormControl, Link } from "@mui/material";
 import MyInput from "./Input";
 import MyPasswordInput from "./Input/MyPasswordInput";
 import SignButton from "./Button/SignButton";
-import * as Yup from "yup";
-import { Formik, Form, ErrorMessage } from "formik";
-import { logIn, tableData } from "./Axios";
+import { LoginSchema } from "./ValidationSchema/ValidationSchema";
+import { Formik, Form } from "formik";
+import { logIn } from "./Axios";
 import PersonOutline from "../images/PersonOutline";
-import { theme } from "../styles/Theme";
 
 export default function Login() {
   const navigate = useNavigate();
-  const LoginSchema = Yup.object().shape({
-    username: Yup.string()
-      .min(3, "Minimum length should be 3")
-      .max(20, "It`s too long")
-      .required("Required"),
-    password: Yup.string()
-      .min(8, "Minimum length should be 8")
-      .max(32, "It`s too long")
-      .required("Required"),
-  });
 
   return (
     <Formik
@@ -38,43 +27,32 @@ export default function Login() {
         // setTimeout(tableData, 1000);
       }}
     >
-      {({ errors, touched }) => (
-        <Form>
-          <Grid xs={12} display="flex" flexDirection="column">
-            <FormControl sx={{ width: "45ch" }}>
-              <MyInput
-                error={errors.username}
-                touched={touched.username}
-                placeholder="Name"
-                id="username"
-                name="username"
-                icon={<PersonOutline />}
-              />
+      <Form autoComplete="off">
+        <Grid xs={12} display="flex" flexDirection="column">
+          <FormControl sx={{ width: "45ch" }}>
+            <MyInput
+              placeholder="Name"
+              name="username"
+              icon={<PersonOutline />}
+            />
 
-              <MyPasswordInput
-                touched={touched.password}
-                error={errors.password}
-                id="password"
-                name="password"
-                placeholder="Password"
-              />
+            <MyPasswordInput name="password" placeholder="Password" />
 
-              <Link
-                href="#"
-                sx={{
-                  textDecoration: "none",
-                  fontWeight: "700",
-                  color: "black",
-                  margin: 3,
-                }}
-              >
-                Forgot your password?
-              </Link>
-            </FormControl>
-            <SignButton text="Sign In" type="submit" />
-          </Grid>
-        </Form>
-      )}
+            <Link
+              href="#"
+              sx={{
+                textDecoration: "none",
+                fontWeight: "700",
+                color: "black",
+                margin: 3,
+              }}
+            >
+              Forgot your password?
+            </Link>
+          </FormControl>
+          <SignButton type="submit" text="Sign In" />
+        </Grid>
+      </Form>
     </Formik>
   );
 }

@@ -1,32 +1,19 @@
 import React from "react";
-import { Grid, FormControl } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { Grid, FormControl } from "@mui/material";
+import { Formik, Form } from "formik";
+import { signUp } from "./Axios";
 import MyInput from "./Input";
-import PersonOutline from "../images/PersonOutline";
 import MyPasswordInput from "./Input/MyPasswordInput";
-import Email from "../images/Email";
 import SignButton from "./Button/SignButton";
 import MyCheckbox from "./MyCheckbox";
-import * as Yup from "yup";
-import { Formik, Form, ErrorMessage } from "formik";
-import { signUp } from "./Axios";
+import PersonOutline from "../images/PersonOutline";
+import Email from "../images/Email";
+import { SignupSchema } from "./ValidationSchema/ValidationSchema";
 
 export default function Register() {
   const navigate = useNavigate();
-  const SignupSchema = Yup.object().shape({
-    username: Yup.string()
-      .min(3, "Password minimum length should be 3")
-      .max(20, "It`s too long")
-      .required("Required"),
-    email: Yup.string().email("Invalid email").required("Required"),
-    password: Yup.string()
-      .min(8, "Password minimum length should be 8")
-      .max(32, "It`s too long")
-      .required("Required"),
-    confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password")], "Password not matched")
-      .required("Required"),
-  });
+
   return (
     <Formik
       initialValues={{
@@ -43,51 +30,30 @@ export default function Register() {
         });
       }}
     >
-      {({ errors, touched }) => (
-        <Form>
-          <Grid xs={12} display="flex" flexDirection="column">
-            <FormControl sx={{ width: "45ch" }}>
-              <MyInput
-                touched={touched.username}
-                error={errors.username}
-                placeholder="Name"
-                id="username"
-                name="username"
-                icon={<PersonOutline />}
-              />
-              <MyInput
-                touched={touched.email}
-                error={errors.email}
-                placeholder="Email"
-                id="email"
-                name="email"
-                icon={<Email />}
-              />
-              <MyPasswordInput
-                touched={touched.password}
-                error={errors.password}
-                id="password"
-                name="password"
-                placeholder="Password"
-              />
-            </FormControl>
-            <MyPasswordInput
-              touched={touched.confirmPassword}
-              error={errors.confirmPassword}
-              name="confirmPassword"
-              id="confirmPassword"
-              placeholder="Repeat password"
+      <Form>
+        <Grid xs={12} display="flex" flexDirection="column">
+          <FormControl sx={{ width: "45ch" }}>
+            <MyInput
+              placeholder="Name"
+              name="username"
+              icon={<PersonOutline />}
             />
-            <MyCheckbox name="termsAndConditions" />
-          </Grid>
-          <SignButton
-            text="Sign Up"
-            type="submit"
-            s
-            // icon={<Facebook />}
+            <MyInput placeholder="Email" name="email" icon={<Email />} />
+            <MyPasswordInput name="password" placeholder="Password" />
+          </FormControl>
+          <MyPasswordInput
+            name="confirmPassword"
+            placeholder="Repeat password"
           />
-        </Form>
-      )}
+          <MyCheckbox name="termsAndConditions" />
+        </Grid>
+        <SignButton
+          text="Sign Up"
+          type="submit"
+          s
+          // icon={<Facebook />}
+        />
+      </Form>
     </Formik>
   );
 }

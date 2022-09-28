@@ -4,25 +4,15 @@ import { useStyles } from "./styles";
 import { ErrorMessage, Field } from "formik";
 import { theme } from "../../styles/Theme";
 
-export default function MyInput({
-  placeholder,
-  icon,
-  error,
-  name,
-  id,
-  touched,
-}) {
+export default function MyInput({ placeholder, icon, name }) {
   const classes = useStyles();
-  console.log(error);
+
   return (
     <>
       <Field
-        required
-        error={error}
         as={TextField}
+        required
         name={name}
-        id={id}
-        // helperText={<ErrorMessage name={name} />}
         color="secondary"
         autoComplete="off"
         sx={classes.input}
@@ -33,17 +23,14 @@ export default function MyInput({
         }}
         placeholder={`${placeholder}`}
       />
-      {{ error } && { touched } && (
-        <Typography
-          sx={{
-            fontSize: "12px",
-          }}
-          variant="subtitle2"
-          color={theme.palette.error.main}
-        >
-          {error}
-        </Typography>
-      )}
+      <ErrorMessage
+        sx={{
+          fontSize: "12px",
+          color: theme.palette.error.main,
+        }}
+        component={Typography}
+        name={name}
+      />
     </>
   );
 }
