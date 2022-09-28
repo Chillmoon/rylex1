@@ -30,30 +30,47 @@ export default function Register() {
         });
       }}
     >
-      <Form>
-        <Grid xs={12} display="flex" flexDirection="column">
-          <FormControl sx={{ width: "45ch" }}>
-            <MyInput
-              placeholder="Name"
-              name="username"
-              icon={<PersonOutline />}
+      {({ errors, touched }) => (
+        <Form>
+          <Grid xs={12} display="flex" flexDirection="column">
+            <FormControl sx={{ width: "45ch" }}>
+              <MyInput
+                placeholder="Name"
+                name="username"
+                icon={<PersonOutline />}
+                error={errors.username}
+                touched={touched.username}
+              />
+              <MyInput
+                placeholder="Email"
+                name="email"
+                icon={<Email />}
+                error={errors.email}
+                touched={touched.email}
+              />
+              <MyPasswordInput
+                name="password"
+                placeholder="Password"
+                error={errors.password}
+                touched={touched.password}
+              />
+            </FormControl>
+            <MyPasswordInput
+              name="confirmPassword"
+              placeholder="Repeat password"
+              error={errors.confirmPassword}
+              touched={touched.confirmPassword}
             />
-            <MyInput placeholder="Email" name="email" icon={<Email />} />
-            <MyPasswordInput name="password" placeholder="Password" />
-          </FormControl>
-          <MyPasswordInput
-            name="confirmPassword"
-            placeholder="Repeat password"
+            <MyCheckbox name="termsAndConditions" />
+          </Grid>
+          <SignButton
+            text="Sign Up"
+            type="submit"
+            s
+            // icon={<Facebook />}
           />
-          <MyCheckbox name="termsAndConditions" />
-        </Grid>
-        <SignButton
-          text="Sign Up"
-          type="submit"
-          s
-          // icon={<Facebook />}
-        />
-      </Form>
+        </Form>
+      )}
     </Formik>
   );
 }

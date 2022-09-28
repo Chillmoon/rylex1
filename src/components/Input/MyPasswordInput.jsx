@@ -13,7 +13,7 @@ import VisibilityOff from "../../images/VisibilityOff";
 import Lock from "../../images/Lock";
 import { theme } from "../../styles/Theme";
 
-export default function MyPasswordInput({ name, placeholder, id }) {
+export default function MyPasswordInput({ name, placeholder, error, touched }) {
   const [password, setPassword] = useState("");
   const [isRevealPassword, setIsRevealPassword] = useState(false);
 
@@ -25,7 +25,7 @@ export default function MyPasswordInput({ name, placeholder, id }) {
         as={TextField}
         sx={classes.input}
         name={name}
-        id={id}
+        error={touched && error ? true : false}
         // helperText={<ErrorMessage name={name} />}
         type={isRevealPassword ? "text" : "password"}
         placeholder={placeholder}

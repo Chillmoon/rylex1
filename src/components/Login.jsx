@@ -27,32 +27,41 @@ export default function Login() {
         // setTimeout(tableData, 1000);
       }}
     >
-      <Form autoComplete="off">
-        <Grid xs={12} display="flex" flexDirection="column">
-          <FormControl sx={{ width: "45ch" }}>
-            <MyInput
-              placeholder="Name"
-              name="username"
-              icon={<PersonOutline />}
-            />
+      {({ errors, touched }) => (
+        <Form autoComplete="off">
+          <Grid xs={12} display="flex" flexDirection="column">
+            <FormControl sx={{ width: "45ch" }}>
+              <MyInput
+                touched={touched.username}
+                error={errors.username}
+                placeholder="Name"
+                name="username"
+                icon={<PersonOutline />}
+              />
 
-            <MyPasswordInput name="password" placeholder="Password" />
+              <MyPasswordInput
+                name="password"
+                placeholder="Password"
+                error={errors.password}
+                touched={touched.password}
+              />
 
-            <Link
-              href="#"
-              sx={{
-                textDecoration: "none",
-                fontWeight: "700",
-                color: "black",
-                margin: 3,
-              }}
-            >
-              Forgot your password?
-            </Link>
-          </FormControl>
-          <SignButton type="submit" text="Sign In" />
-        </Grid>
-      </Form>
+              <Link
+                href="#"
+                sx={{
+                  textDecoration: "none",
+                  fontWeight: "700",
+                  color: "black",
+                  margin: 3,
+                }}
+              >
+                Forgot your password?
+              </Link>
+            </FormControl>
+            <SignButton type="submit" text="Sign In" />
+          </Grid>
+        </Form>
+      )}
     </Formik>
   );
 }
