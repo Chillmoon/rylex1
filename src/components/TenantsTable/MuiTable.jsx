@@ -1,4 +1,4 @@
-import { Box, Pagination, Paper } from "@mui/material";
+import { Box, Pagination, Paper, TablePagination } from "@mui/material";
 import MaterialTable from "material-table";
 import React, { useState, useEffect } from "react";
 import { theme } from "../../styles/Theme";
@@ -76,6 +76,7 @@ export default function MuiTable() {
           // },
 
           paging: true,
+          initialPage: 1,
           pageSizeOptions: [10, 25, 100],
           pageSize: 10,
           paginationType: "stepped",

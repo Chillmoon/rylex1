@@ -59,15 +59,16 @@ export const useButtonStyles = () => ({
     },
   },
   iconButton: {
-    color: theme.palette.grey.grey,
+    color: `${theme.palette.primary.main} !important`,
     borderRadius: "7px",
     padding: "3px",
     margin: "2px",
     "&:hover": {
       backgroundColor: "transparent !important",
     },
-    "&:active": {
-      color: theme.palette.primary.greenActive,
+
+    "&:disabled": {
+      color: `${theme.palette.grey.grey} !important`,
     },
   },
   buttonLink: {
