@@ -2,11 +2,11 @@ import React from "react";
 import { Grid, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Box from "@mui/system/Box";
-import LogoWithName from "../components/LogoWithName";
-import Login from "../components/Login";
+import LogoWithName from "../components/LogoWithName/LogoWithName";
+import Login from "../components/Login/Login";
 import pattern2 from "../images/pattern2.svg";
 import SignButton from "../components/Button/SignButton";
-import SocialLinks from "../components/SocialLinks";
+import SocialLinks from "../components/SocialLinks/SocialLinks";
 import { theme } from "../styles/Theme";
 
 export default function SignIn() {
@@ -14,7 +14,7 @@ export default function SignIn() {
   return (
     <>
       <Grid container height={"100vh"}>
-        <Grid xs={12} sm={7}>
+        <Grid item xs={12} sm={7}>
           <LogoWithName color="black" />
           <Box
             sx={{ height: "80%", minHeight: "600px", mt: "90px" }}
@@ -44,6 +44,7 @@ export default function SignIn() {
           </Box>
         </Grid>
         <Grid
+          item
           xs={12}
           sm={5}
           display="flex"

@@ -1,14 +1,13 @@
 import React from "react";
-import { TextField, InputAdornment, Box, Icon } from "@mui/material";
-import Search from "../../images/Search";
+import { TextField, InputAdornment, Box } from "@mui/material";
 import { useStyles } from "./styles";
+import { theme } from "../../styles/Theme";
 
 export default function Input({ icon, onChange }) {
   const classes = useStyles();
   return (
     <TextField
       name="Search"
-      id="search"
       placeholder="Search"
       sx={classes.searchInput}
       onChange={onChange}
@@ -18,9 +17,9 @@ export default function Input({ icon, onChange }) {
             {
               <Box
                 sx={{
-                  fill: "#949494",
+                  fill: theme.palette.primary.black,
                   "& path": {
-                    fill: "#949494",
+                    fill: theme.palette.primary.black,
                   },
                 }}
               >

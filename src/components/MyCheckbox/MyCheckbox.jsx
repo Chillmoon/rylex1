@@ -1,7 +1,8 @@
 import React from "react";
 import { FormControlLabel, Checkbox, Link } from "@mui/material";
-import CheckboxDone from "../images/CheckboxDone";
-import CheckboxEmpty from "../images/CheckboxEmpty";
+import CheckboxEmpty from "../../images/CheckboxEmpty";
+import CheckboxDone from "../../images/CheckboxDone";
+import { theme } from "../../styles/Theme";
 
 export default function MyCheckbox(name) {
   return (
@@ -19,7 +20,7 @@ export default function MyCheckbox(name) {
           I agree to the{" "}
           <Link
             sx={{
-              color: "black",
+              color: theme.palette.primary.black,
               textDecoration: "none",
               fontWeight: "700",
             }}

@@ -3,7 +3,7 @@ import { IconButton, Box } from "@mui/material";
 
 export default function ButtonIcon({ icon, size, color, disabled, onClick }) {
   return (
-    <IconButton onClick={onClick} disabled={disabled} size={size}>
+    <IconButton disableRipple onClick={onClick} disabled={disabled} size={size}>
       <Box
         sx={{
           fill: { color },

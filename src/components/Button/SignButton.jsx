@@ -7,6 +7,7 @@ export default function SignButton({ text, onClick, type }) {
 
   return (
     <Button
+      disableRipple
       variant="contained"
       sx={classes.signbutton}
       onClick={onClick}

@@ -1,6 +1,10 @@
 import { createTheme } from "@mui/material/styles";
 
 export const theme = createTheme({
+  transitions: {
+    // So we have `transition: none;` everywhere
+    create: () => "none",
+  },
   palette: {
     primary: {
       black: "#0A0B0B",

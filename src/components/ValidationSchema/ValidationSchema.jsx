@@ -8,7 +8,11 @@ export const LoginSchema = Yup.object().shape({
   password: Yup.string()
     .min(8, "Minimum length should be 8")
     .max(32, "It`s too long")
-    .required("Required"),
+    .required("Required")
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+      "Must Contain one uppercase, one lowercase, one number and one special symbol"
+    ),
 });
 
 export const SignupSchema = Yup.object().shape({

@@ -7,6 +7,7 @@ export default function ButtonWithIcon({ type, icon, text }) {
 
   return (
     <Button
+      disableRipple
       variant="contained"
       type={type}
       endIcon={<Box sx={classes.iconInButton}>{icon}</Box>}

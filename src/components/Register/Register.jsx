@@ -2,14 +2,14 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Grid, FormControl } from "@mui/material";
 import { Formik, Form } from "formik";
-import { signUp } from "./Axios";
-import MyInput from "./Input";
-import MyPasswordInput from "./Input/MyPasswordInput";
-import SignButton from "./Button/SignButton";
-import MyCheckbox from "./MyCheckbox";
-import PersonOutline from "../images/PersonOutline";
-import Email from "../images/Email";
-import { SignupSchema } from "./ValidationSchema/ValidationSchema";
+import { signUp } from "../Axios/Axios";
+import MyInput from "../Input/index";
+import MyPasswordInput from "../Input/MyPasswordInput";
+import SignButton from "../Button/SignButton";
+import MyCheckbox from "../MyCheckbox/MyCheckbox";
+import PersonOutline from "../../images/PersonOutline";
+import Email from "../../images/Email";
+import { SignupSchema } from "../ValidationSchema/ValidationSchema";
 
 export default function Register() {
   const navigate = useNavigate();

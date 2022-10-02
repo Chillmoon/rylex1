@@ -31,18 +31,14 @@ export const signUp = (userData, successCallback) => {
 };
 
 export const tableData = () => {
-  return (
-    axios
-      .get("https://api-shark.herokuapp.com/tenants", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
-      // .then(function (response) {
-      //   console.log(response.data);
-      // })
-      .catch((err) => err)
-  );
+  return axios
+    .get("https://api-shark.herokuapp.com/tenants", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+
+    .catch((err) => err);
 };
 
 export const addTableData = (userData) => {

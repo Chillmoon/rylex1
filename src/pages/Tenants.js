@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Stack, Button } from "@mui/material";
 import { useButtonStyles } from "../components/Button/styles";
-import LogoWithName from "../components/LogoWithName";
+import LogoWithName from "../components/LogoWithName/LogoWithName";
 import NavBar from "../components/NavBar/NavBar";
 import CarbonHome from "../images/CarbonHome";
 import Search from "../images/Search";
@@ -14,6 +14,7 @@ export default function Tenants() {
     <>
       <Grid container height={"100vh"}>
         <Grid
+          item
           sm={2}
           xs={5}
           display="flex"

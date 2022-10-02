@@ -60,7 +60,8 @@ export const useButtonStyles = () => ({
   },
   iconButton: {
     color: `${theme.palette.primary.main} !important`,
-    borderRadius: "7px",
+    border: "1px solid transparent",
+    borderRadius: "5px !important",
     padding: "3px",
     margin: "2px",
     "&:hover": {

@@ -14,6 +14,7 @@ import { useButtonStyles } from "../Button/styles";
 
 import Account from "../../images/Account";
 import { useNavBarStyles } from "./Styles";
+import { theme } from "../../styles/Theme";
 
 export default function NavBar() {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ export default function NavBar() {
   return (
     <AppBar position="static" sx={navBarClasses.appBar}>
       <Toolbar sx={navBarClasses.toolBar}>
-        <Typography color="#949494">Tenants</Typography>
+        <Typography color={theme.palette.grey.grey}>Tenants</Typography>
         <Stack direction="row" marginLeft="auto">
           <Button href="#" startIcon={<Global />} sx={classes.iconButton}>
             EN

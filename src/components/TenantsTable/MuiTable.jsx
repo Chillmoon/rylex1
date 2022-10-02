@@ -1,18 +1,27 @@
-import { Box, Pagination, Paper, TablePagination } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import MaterialTable from "material-table";
 import React, { useState, useEffect } from "react";
+import Search from "../../images/Search";
 import { theme } from "../../styles/Theme";
-import { tableData } from "../Axios";
+import { tableData } from "../Axios/Axios";
 import { useStyles } from "../Input/styles";
 import MyPagination from "./MyPagination";
-import { useTableStyles } from "./Style";
+import { tableSearch, useTableStyles } from "./Style";
 
 export default function MuiTable() {
-  const classes = useStyles();
   const tableStyles = useTableStyles();
+  const search = tableSearch();
 
   useEffect(() => {
-    tableData().then((response) => setData(response.data.tenants));
+    let isMounted = true;
+    tableData().then((response) => {
+      if (isMounted) {
+        setData(response.data.tenants);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const [data, setData] = useState();
@@ -64,19 +73,25 @@ export default function MuiTable() {
             },
           },
         ]}
+        icons={{
+          Search: () => <Search />,
+          ResetSearch: () => "",
+        }}
         options={{
           searchFieldAlignment: "left",
           searchFieldVariant: "outlined",
-          searchFieldStyle: classes.searchInput,
+          searchFieldStyle: { className: search.root },
           // searchFieldStyle: {
           //   background: theme.palette.primary.white,
           //   disableUnderline: true,
           //   border: "none",
           //   paddingLeft: "0 !mportant",
           // },
-
+          draggable: false,
+          sorting: false,
           paging: true,
-          initialPage: 1,
+          emptyRowsWhenPaging: true,
+          // initialPage: 1,
           pageSizeOptions: [10, 25, 100],
           pageSize: 10,
           paginationType: "stepped",
@@ -84,9 +99,13 @@ export default function MuiTable() {
           headerStyle: {
             backgroundColor: theme.palette.primary.main,
             color: theme.palette.primary.white,
+            fontSize: "16px",
+            cursor: "default",
           },
           rowStyle: {
-            "&:hover": {
+            fontSize: "14px",
+            lineHeight: "50px",
+            "& :hover": {
               border: "none",
               backgroundColor: theme.palette.secondary.lightGreen,
             },

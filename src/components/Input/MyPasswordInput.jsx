@@ -45,10 +45,10 @@ export default function MyPasswordInput({ name, placeholder, error, touched }) {
                 {isRevealPassword ? (
                   <Box
                     sx={{
-                      fill: "#949494",
+                      fill: theme.palette.primary.black,
                       "& path": {
                         cursor: "pointer",
-                        fill: "#949494",
+                        fill: theme.palette.primary.black,
                       },
                     }}
                   >
@@ -57,10 +57,10 @@ export default function MyPasswordInput({ name, placeholder, error, touched }) {
                 ) : (
                   <Box
                     sx={{
-                      fill: "#949494",
+                      fill: theme.palette.primary.black,
                       "& path": {
                         cursor: "pointer",
-                        fill: "#949494",
+                        fill: theme.palette.primary.black,
                       },
                     }}
                   >
