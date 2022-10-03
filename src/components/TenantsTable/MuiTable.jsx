@@ -1,16 +1,21 @@
-import { Box, Paper } from "@mui/material";
+import { Box, Link, Paper } from "@mui/material";
 import MaterialTable from "material-table";
 import React, { useState, useEffect } from "react";
 import Search from "../../images/Search";
+import AddCircleOutline from "../../images/AddCircleOutline";
 import { theme } from "../../styles/Theme";
 import { tableData } from "../Axios/Axios";
+import ButtonWithIcon from "../Button";
 import { useStyles } from "../Input/styles";
 import MyPagination from "./MyPagination";
 import { tableSearch, useTableStyles } from "./Style";
+import { useButtonStyles } from "../Button/styles";
+import Modal from "../Modal/Modal";
 
 export default function MuiTable() {
   const tableStyles = useTableStyles();
-  const search = tableSearch();
+  const style = useStyles();
+  const classes = useButtonStyles();
 
   useEffect(() => {
     let isMounted = true;
@@ -26,6 +31,8 @@ export default function MuiTable() {
 
   const [data, setData] = useState();
 
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <Box sx={tableStyles.table}>
       <MaterialTable
@@ -40,26 +47,18 @@ export default function MuiTable() {
             headerStyle: {
               borderRadius: "5px 0px 0px 0px",
             },
-            cellStyle: {
-              borderRight: `1px solid ${theme.palette.secondary.main}`,
-              boxShadow: ` 1px 0px 0px inset ${theme.palette.secondary.main}`,
-            },
           },
           {
             title: "ID",
             field: "_id",
 
             cellStyle: {
-              borderRight: `1px solid ${theme.palette.secondary.main}`,
+              color: theme.palette.primary.greenActive,
             },
           },
           {
             title: "Name",
             field: "name",
-
-            cellStyle: {
-              borderRight: `1px solid ${theme.palette.secondary.main}`,
-            },
           },
           {
             title: "Type",
@@ -67,9 +66,6 @@ export default function MuiTable() {
 
             headerStyle: {
               borderRadius: "0px 5px 0px 0px",
-            },
-            cellStyle: {
-              borderRight: `1px solid ${theme.palette.secondary.main}`,
             },
           },
         ]}
@@ -80,18 +76,11 @@ export default function MuiTable() {
         options={{
           searchFieldAlignment: "left",
           searchFieldVariant: "outlined",
-          searchFieldStyle: { className: search.root },
-          // searchFieldStyle: {
-          //   background: theme.palette.primary.white,
-          //   disableUnderline: true,
-          //   border: "none",
-          //   paddingLeft: "0 !mportant",
-          // },
+          searchFieldStyle: style.searchInput,
           draggable: false,
           sorting: false,
           paging: true,
           emptyRowsWhenPaging: true,
-          // initialPage: 1,
           pageSizeOptions: [10, 25, 100],
           pageSize: 10,
           paginationType: "stepped",
@@ -102,22 +91,38 @@ export default function MuiTable() {
             fontSize: "16px",
             cursor: "default",
           },
-          rowStyle: {
-            fontSize: "14px",
-            lineHeight: "50px",
-            "& :hover": {
-              border: "none",
-              backgroundColor: theme.palette.secondary.lightGreen,
-            },
-          },
+          rowStyle: tableStyles.row,
         }}
         components={{
           Container: (props) => <Paper {...props} elevation={0} />,
           Pagination: (props) => {
             return <MyPagination {...props} />;
           },
+          Action: (props) => (
+            <ButtonWithIcon
+              {...props}
+              icon={<AddCircleOutline />}
+              text="Add"
+              onClick={() => setIsOpen(true)}
+              sx={classes.button}
+            />
+          ),
+        }}
+        actions={[
+          {
+            isFreeAction: true,
+          },
+        ]}
+        onRowClick={(event, rowData) => {
+          // window.open("https://www.youtube.com/");
+          // Get your id from rowData and use with link.
+          // window.open(`mysite.com/product/${rowData.id}`, );
+          // event.stopPropagation();
         }}
       />
+      <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+        Fancy Modal
+      </Modal>
     </Box>
   );
 }

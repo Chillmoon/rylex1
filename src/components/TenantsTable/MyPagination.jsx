@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Grid,
   IconButton,
@@ -7,21 +8,18 @@ import {
   Select,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+
 import { theme } from "../../styles/Theme";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ArrowSelect from "../../images/ArrowSelect";
-import { useButtonStyles } from "../Button/styles";
 import {
   pagination,
   paginationArrows,
   select,
   selectMenu,
-  selectMenuItems,
   useTableStyles,
 } from "./Style";
-
 export default function MyPagination(props) {
   const selectMenuStyle = selectMenu();
   const paginationClass = pagination();
@@ -70,12 +68,7 @@ export default function MyPagination(props) {
               vertical: "bottom",
             },
             className: selectMenuStyle.root,
-
-            //className ..
           }}
-          // MenuListProps={{
-          //   className: selectMenuItemsStyle.root,
-          // }}
           IconComponent={() => (
             <Box
               sx={{

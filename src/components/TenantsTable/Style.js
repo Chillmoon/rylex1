@@ -3,19 +3,33 @@ import { theme } from "../../styles/Theme";
 
 export const useTableStyles = () => ({
   table: {
+    fontFamily: "Mulish !important",
     boxShadow: "none",
     margin: "0 8% 0 2%",
     backgoundColor: "blue",
-    borderColor: "transparent !important",
+    "& .MuiTableBody-root": {
+      border: `1px solid ${theme.palette.secondary.main} `,
+    },
     "& [class*=MTableToolbar]": {
       padding: "0 !important",
     },
+    "& tbody>.MuiTableRow-root:hover": {
+      backgroundColor: theme.palette.secondary.lightGreen,
+      "& .MuiTableCell-root": {
+        borderRightColor: `transparent`,
+      },
+    },
+    "& tbody>tr>.MuiTableCell-root": {
+      borderRight: `1px solid ${theme.palette.secondary.main}`,
+    },
   },
-});
-
-export const rowStyle = makeStyles({
-  root: {
-    "& tbody tr:hover": {},
+  row: {
+    fontSize: "14px",
+    lineHeight: "50px",
+    "&:hover": {
+      border: "none",
+      backgroundColor: theme.palette.secondary.lightGreen,
+    },
   },
 });
 
@@ -78,7 +92,6 @@ export const selectMenu = makeStyles({
     "& .MuiMenu-list": {
       display: "flex",
       flexDirection: "column",
-      justifyContent: "start",
       padding: "0px",
       borderRadius: "1px",
 
@@ -124,15 +137,6 @@ export const select = makeStyles({
 
     "&&&>div": {
       paddingRight: 0,
-    },
-  },
-});
-
-export const tableSearch = makeStyles({
-  root: {
-    "&>fieldset": {
-      width: "400px !important",
-      borderColor: "red !important",
     },
   },
 });

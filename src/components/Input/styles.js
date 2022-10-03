@@ -29,6 +29,28 @@ export const useStyles = () => ({
     },
   },
 
+  searchInput: {
+    borderRadius: "5px",
+    height: "45px",
+    width: "400px",
+    "& fieldset": {
+      border: "none",
+      borderWidth: "1px !important",
+      borderColor: `${theme.palette.secondary.main} !important`,
+    },
+    "&.Mui-focused": {
+      "&>fieldset": {
+        borderColor: `${theme.palette.primary.main} !important`,
+      },
+    },
+    "&:hover": {
+      cursor: "pointer",
+      "&>fieldset": {
+        borderColor: `${theme.palette.secondary.main} !important`,
+      },
+    },
+  },
+
   errorMessage: {
     position: "absolute",
     color: theme.palette.primary.main,
