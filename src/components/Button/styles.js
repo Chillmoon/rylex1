@@ -3,19 +3,21 @@ import { theme } from "../../styles/Theme";
 export const useButtonStyles = () => ({
   button: {
     maxWidth: "100px",
-    padding: "8px 25px",
+    padding: "9px 25px !important",
     border: `2px solid ${theme.palette.primary.white}`,
-    borderRadius: "40px",
+    borderRadius: "40px !important",
+    backgroundColor: `${theme.palette.primary.main} !important`,
     boxShadow: "none",
-    color: theme.palette.primary.white,
+    color: `${theme.palette.primary.white} !important`,
+    border: `1px solid ${theme.palette.primary.main} !important`,
     "&:hover": {
-      border: `2px solid ${theme.palette.primary.main}`,
-      background: theme.palette.primary.white,
+      border: `1px solid ${theme.palette.primary.main}`,
+      background: `${theme.palette.primary.white} !important`,
       boxShadow: "none",
-      color: theme.palette.primary.main,
-      transition: "all 200ms ease-in-out",
+      color: `${theme.palette.primary.main} !important`,
+      transition: "all 200ms ease-in-out !important",
       "& svg": {
-        transition: "all 200ms ease-in-out",
+        transition: "all 200ms ease-in-out !important",
         fill: theme.palette.primary.main,
         "& path": {
           cursor: "pointer",
@@ -62,7 +64,7 @@ export const useButtonStyles = () => ({
     color: `${theme.palette.primary.main} !important`,
     border: "1px solid transparent",
     borderRadius: "5px !important",
-    padding: "3px",
+    padding: "7px !important",
     margin: "2px",
     "&:hover": {
       backgroundColor: "transparent !important",

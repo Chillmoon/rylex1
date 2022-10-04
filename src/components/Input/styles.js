@@ -33,8 +33,9 @@ export const useStyles = () => ({
     borderRadius: "5px",
     height: "45px",
     width: "400px",
+    marginTop: "10px",
+    backgroundColor: theme.palette.primary.white,
     "& fieldset": {
-      border: "none",
       borderWidth: "1px !important",
       borderColor: `${theme.palette.secondary.main} !important`,
     },
@@ -45,8 +46,8 @@ export const useStyles = () => ({
     },
     "&:hover": {
       cursor: "pointer",
-      "&>fieldset": {
-        borderColor: `${theme.palette.secondary.main} !important`,
+      "& fieldset": {
+        borderColor: `red !important`,
       },
     },
   },

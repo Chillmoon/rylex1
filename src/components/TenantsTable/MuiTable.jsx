@@ -1,4 +1,4 @@
-import { Box, Link, Paper } from "@mui/material";
+import { Box, Link, Paper, Typography } from "@mui/material";
 import MaterialTable from "material-table";
 import React, { useState, useEffect } from "react";
 import Search from "../../images/Search";
@@ -11,6 +11,7 @@ import MyPagination from "./MyPagination";
 import { tableSearch, useTableStyles } from "./Style";
 import { useButtonStyles } from "../Button/styles";
 import Modal from "../Modal/Modal";
+import ModalTenants from "../ModalTenants/ModalTenants";
 
 export default function MuiTable() {
   const tableStyles = useTableStyles();
@@ -30,7 +31,6 @@ export default function MuiTable() {
   }, []);
 
   const [data, setData] = useState();
-
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -121,7 +121,7 @@ export default function MuiTable() {
         }}
       />
       <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-        Fancy Modal
+        <ModalTenants />
       </Modal>
     </Box>
   );

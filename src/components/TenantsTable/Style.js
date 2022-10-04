@@ -8,7 +8,7 @@ export const useTableStyles = () => ({
     margin: "0 8% 0 2%",
     backgoundColor: "blue",
     "& .MuiTableBody-root": {
-      border: `1px solid ${theme.palette.secondary.main} `,
+      border: `1px solid ${theme.palette.secondary.main}`,
     },
     "& [class*=MTableToolbar]": {
       padding: "0 !important",
@@ -17,10 +17,16 @@ export const useTableStyles = () => ({
       backgroundColor: theme.palette.secondary.lightGreen,
       "& .MuiTableCell-root": {
         borderRightColor: `transparent`,
+        "&:last-child": {
+          borderRightColor: theme.palette.secondary.main,
+        },
       },
     },
     "& tbody>tr>.MuiTableCell-root": {
       borderRight: `1px solid ${theme.palette.secondary.main}`,
+      "&:last-child": {
+        borderRight: "none",
+      },
     },
   },
   row: {

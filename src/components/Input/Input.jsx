@@ -1,34 +1,30 @@
 import React from "react";
-import { TextField, InputAdornment, Box } from "@mui/material";
+import { TextField, Typography } from "@mui/material";
+import { ErrorMessage, Field } from "formik";
 import { useStyles } from "./styles";
 import { theme } from "../../styles/Theme";
 
-export default function Input({ icon, onChange }) {
+export default function Input({ name, onChange, error, touched }) {
   const classes = useStyles();
   return (
-    <TextField
-      name="Search"
-      placeholder="Search"
-      sx={classes.searchInput}
-      onChange={onChange}
-      InputProps={{
-        startAdornment: (
-          <InputAdornment position="start">
-            {
-              <Box
-                sx={{
-                  fill: theme.palette.primary.black,
-                  "& path": {
-                    fill: theme.palette.primary.black,
-                  },
-                }}
-              >
-                {icon}
-              </Box>
-            }
-          </InputAdornment>
-        ),
-      }}
-    />
+    <>
+      <Field
+        as={TextField}
+        sx={classes.searchInput}
+        name={name}
+        onChange={onChange}
+        error={error}
+        touched={touched}
+        autoComplete="off"
+      />
+      <ErrorMessage
+        sx={{
+          fontSize: "12px",
+          color: theme.palette.error.main,
+        }}
+        component={Typography}
+        name={name}
+      />
+    </>
   );
 }
