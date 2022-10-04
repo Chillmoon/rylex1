@@ -15,17 +15,15 @@ export default function Modal({ open, children, onClose }) {
         {children}
         <Stack
           sx={{
+            position: "absolute",
             display: "flex",
             flexDirection: "row",
-            justifyContent: "flex-end",
-            gap: "10px",
+            gap: "18px",
+            top: "655px",
+            left: "304px",
           }}
         >
-          <ButtonWithIcon
-            onClick={onClose}
-            text="Cancel"
-            sx={{ margin: "100px" }}
-          />
+          <ButtonWithIcon onClick={onClose} text="Cancel" type="cancel" />
           <ButtonWithIcon text="Save" />
         </Stack>
       </div>

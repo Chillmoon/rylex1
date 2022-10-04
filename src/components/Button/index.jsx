@@ -12,7 +12,7 @@ export default function ButtonWithIcon({ type, icon, text, onClick }) {
       type={type}
       onClick={onClick}
       endIcon={<Box sx={classes.iconInButton}>{icon}</Box>}
-      sx={classes.button}
+      sx={type == "cancel" ? classes.cancel : classes.button}
     >
       {text}
     </Button>

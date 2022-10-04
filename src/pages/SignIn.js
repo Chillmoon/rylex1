@@ -17,7 +17,7 @@ export default function SignIn() {
         <Grid item xs={12} sm={7}>
           <LogoWithName color="black" />
           <Box
-            sx={{ height: "80%", minHeight: "600px", mt: "90px" }}
+            sx={{ height: "80%", minHeight: "600px", mt: "60px" }}
             display="flex"
             flexDirection="column"
             justifyContent="center"

@@ -8,10 +8,10 @@ import { tableData } from "../Axios/Axios";
 import ButtonWithIcon from "../Button";
 import { useStyles } from "../Input/styles";
 import MyPagination from "./MyPagination";
-import { tableSearch, useTableStyles } from "./Style";
+import { search, tableSearch, useTableStyles } from "./Style";
 import { useButtonStyles } from "../Button/styles";
 import Modal from "../Modal/Modal";
-import ModalTenants from "../ModalTenants/ModalTenants";
+import ModalTenants from "../Modal/ModalTenants";
 
 export default function MuiTable() {
   const tableStyles = useTableStyles();
@@ -34,7 +34,7 @@ export default function MuiTable() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Box sx={tableStyles.table}>
+    <Box sx={tableStyles.table} className={search.root}>
       <MaterialTable
         title={null}
         data={data}
@@ -76,7 +76,7 @@ export default function MuiTable() {
         options={{
           searchFieldAlignment: "left",
           searchFieldVariant: "outlined",
-          searchFieldStyle: style.searchInput,
+          // searchFieldStyle: style.searchInput,
           draggable: false,
           sorting: false,
           paging: true,
@@ -101,7 +101,17 @@ export default function MuiTable() {
           Action: (props) => (
             <ButtonWithIcon
               {...props}
-              icon={<AddCircleOutline />}
+              icon={
+                <Box
+                  sx={{
+                    width: "14px",
+                    height: "14px",
+                    paddingBottom: "10px",
+                  }}
+                >
+                  <AddCircleOutline />
+                </Box>
+              }
               text="Add"
               onClick={() => setIsOpen(true)}
               sx={classes.button}

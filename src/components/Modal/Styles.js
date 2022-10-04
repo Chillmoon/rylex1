@@ -1,7 +1,9 @@
 import { theme } from "../../styles/Theme";
 
 export const modalStyles = {
-  position: "absolute",
+  position: "fixed",
+  width: "480px",
+  height: "670px",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",

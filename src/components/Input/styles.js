@@ -9,8 +9,8 @@ export const useStyles = () => ({
     // border: `none`,
 
     "& fieldset": {
-      border: `1px solid `,
-      borderColor: "transparent !important",
+      border: `1px solid transparent !important`,
+
       "&:hover": {
         borderColor: "transparent ",
       },
@@ -31,13 +31,19 @@ export const useStyles = () => ({
 
   searchInput: {
     borderRadius: "5px",
-    height: "45px",
-    width: "400px",
-    marginTop: "10px",
-    backgroundColor: theme.palette.primary.white,
+    "&.MuiFormControl-root": {
+      height: "40px !important",
+      width: "100%", // width: "295px",
+      margin: "3px 10px",
+    },
+
+    "& .MuiOutlinedInput-input": {
+      padding: "7px 10px",
+      backgroundColor: theme.palette.primary.white,
+    },
+
     "& fieldset": {
-      borderWidth: "1px !important",
-      borderColor: `${theme.palette.secondary.main} !important`,
+      border: `1px solid ${theme.palette.secondary.lostGreen} !important`,
     },
     "&.Mui-focused": {
       "&>fieldset": {
@@ -47,7 +53,7 @@ export const useStyles = () => ({
     "&:hover": {
       cursor: "pointer",
       "& fieldset": {
-        borderColor: `red !important`,
+        borderColor: `${theme.palette.secondary.lostGreen} !important`,
       },
     },
   },

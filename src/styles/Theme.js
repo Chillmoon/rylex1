@@ -31,6 +31,7 @@ export const theme = createTheme({
       fontWeight: "400",
       textTransform: "none !important",
       lineHeight: "23px",
+      textAlign: "center",
     },
   },
 });

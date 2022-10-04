@@ -125,6 +125,9 @@ export const select = makeStyles({
     height: "35px !important",
     padding: "5px 0px 0px 0px",
 
+    "& .MuiOutlinedInput-input": {
+      padding: "8px 0px 10px 12px",
+    },
     "&>fieldset": {
       borderWidth: "1px !important",
       borderColor: `${theme.palette.secondary.main} !important`,
@@ -143,6 +146,32 @@ export const select = makeStyles({
 
     "&&&>div": {
       paddingRight: 0,
+    },
+  },
+});
+
+export const search = makeStyles({
+  root: {
+    marginTop: "10px",
+
+    "&&&&&>fieldset": {
+      borderWidth: "1px !important",
+      borderColor: `transparent !important`,
+      backgroundColor: theme.palette.primary.white,
+      borderRadius: "5px",
+      height: "45px",
+      width: "400px",
+    },
+    "&&&&&.Mui-focused": {
+      "&>fieldset": {
+        borderColor: `${theme.palette.primary.main} !important`,
+      },
+    },
+    "&:hover": {
+      cursor: "pointer",
+      "&&&&&>fieldset": {
+        borderColor: `transparent !important`,
+      },
     },
   },
 });
