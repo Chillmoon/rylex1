@@ -4,7 +4,7 @@ import { ErrorMessage, Field } from "formik";
 import { useStyles } from "./styles";
 import { theme } from "../../styles/Theme";
 
-export default function Input({ name, onChange, error, touched }) {
+export default function Input({ name, error, touched }) {
   const classes = useStyles();
   return (
     <>
@@ -12,15 +12,14 @@ export default function Input({ name, onChange, error, touched }) {
         as={TextField}
         sx={classes.searchInput}
         name={name}
-        onChange={onChange}
-        error={error}
-        touched={touched}
+        error={touched && error ? true : false}
         autoComplete="off"
       />
       <ErrorMessage
         sx={{
           fontSize: "12px",
           color: theme.palette.error.main,
+          margin: "-9px",
         }}
         component={Typography}
         name={name}

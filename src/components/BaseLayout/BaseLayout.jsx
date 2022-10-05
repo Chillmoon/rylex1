@@ -19,7 +19,7 @@ export default function BaseLayout({ baseComponent, links }) {
         <LogoWithName color={theme.palette.primary.white} />
         {links}
       </Grid>
-      <Grid sm={10} xs={7} display="flex" flexDirection="column">
+      <Grid item sm={10} xs={7} display="flex" flexDirection="column">
         <NavBar />
         {baseComponent}
       </Grid>

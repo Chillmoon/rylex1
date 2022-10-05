@@ -32,7 +32,7 @@ export default function Register() {
     >
       {({ errors, touched }) => (
         <Form>
-          <Grid xs={12} display="flex" flexDirection="column">
+          <Grid item xs={12} display="flex" flexDirection="column">
             <FormControl sx={{ width: "45ch" }}>
               <MyInput
                 placeholder="Name"

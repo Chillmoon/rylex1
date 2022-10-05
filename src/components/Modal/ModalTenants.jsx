@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, FormControl, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { Formik, Form } from "formik";
 import AddCircleOutline from "../../images/AddCircleOutline";
 import Input from "../Input/Input";
@@ -7,13 +7,26 @@ import { theme } from "../../styles/Theme";
 import { Stack } from "@mui/system";
 import { ModalTenantsSchema } from "../ValidationSchema/ValidationSchema";
 import ButtonWithIcon from "../Button";
+import { addTableData, tableData } from "../Axios/Axios";
 
-export default function ModalTenants(onClose) {
+export default function ModalTenants(handleClose) {
   const starStyle = {
     margin: "5px",
     display: "inline",
     color: theme.palette.primary.greenActive,
   };
+
+  // const getChangedValues = (values, initialValues) => {
+  //   return Object.entries(values).reduce((acc, [key, value]) => {
+  //     const hasChanged = initialValues[key] !== value;
+
+  //     if (hasChanged) {
+  //       acc[key] = value;
+  //     }
+
+  //     return acc;
+  //   }, {});
+  // };
 
   return (
     <>
@@ -45,24 +58,26 @@ export default function ModalTenants(onClose) {
           username: "",
           type: "",
           email: "",
-          name: "",
-          phoneNumber: "",
-          emailContact: "",
+
+          street: "",
           zipCode: "",
           city: "",
           country: "",
+
+          name: "",
+          phoneNumber: "",
+          emailContact: "",
         }}
         validationSchema={ModalTenantsSchema}
-        // onSubmit={(values) => {
-        //   console.log(values);
-        //   signUp(values, () => {
-        //     navigate("/signin");
-        //   });
-        // }}
+        onSubmit={(values) => {
+          console.log(values);
+          addTableData(values);
+        }}
       >
         {({ errors, touched }) => (
-          <Form>
+          <Form autoComplete="off">
             <Grid
+              item
               xs={12}
               display="flex"
               flexDirection="column"
@@ -71,21 +86,26 @@ export default function ModalTenants(onClose) {
               justifyContent="end"
             >
               <Stack flexDirection="row">
-                <Grid xs={3} justifyContent="start">
-                  <Typography variant="subtitle2" margin="8px 0px 25px 0px">
+                <Grid item xs={3} justifyContent="start">
+                  <Typography
+                    component={"div"}
+                    variant="subtitle2"
+                    margin="8px 0px 25px 0px"
+                  >
                     Tenant name:<Box sx={starStyle}>*</Box>
                   </Typography>
-                  <Typography variant="subtitle2">
+                  <Typography component={"div"} variant="subtitle2">
                     Type:<Box sx={starStyle}>*</Box>
                   </Typography>
                   <Typography
+                    component={"div"}
                     variant="subtitle2"
                     sx={{ position: "absolute", top: "190px" }}
                   >
                     Support e-mail:<Box sx={starStyle}>*</Box>
                   </Typography>
                 </Grid>
-                <Grid xs={9} justifyContent="end" marginRight="10px">
+                <Grid item xs={9} justifyContent="end" marginRight="10px">
                   <Input
                     name="username"
                     error={errors.username}
@@ -114,27 +134,19 @@ export default function ModalTenants(onClose) {
               >
                 Contact information
               </Typography>
-              <Stack gap="5px" flexDirection="row">
-                <Grid xs={3} justifyContent="start">
+              <Stack flexDirection="row">
+                <Grid item xs={3} justifyContent="start">
                   <Typography variant="subtitle2" margin="8px 0px 25px 0px">
                     Contact name:
                   </Typography>
                   <Typography variant="subtitle2">Phone number: </Typography>
                   <Typography variant="subtitle2" margin="23px 0px 0px 0px">
-                    Tenant name:
+                    Email:
                   </Typography>
                 </Grid>
-                <Grid xs={9} justifyContent="end" marginRight="10px">
-                  <Input
-                    name="name"
-                    error={errors.name}
-                    touched={touched.name}
-                  />
-                  <Input
-                    name="phoneNumber"
-                    error={errors.phoneNumber}
-                    touched={touched.phoneNumber}
-                  />
+                <Grid item xs={9} justifyContent="end" marginRight="10px">
+                  <Input name="name" />
+                  <Input name="phoneNumber" />
                   <Input
                     name="emailContact"
                     error={errors.emailContact}
@@ -153,8 +165,8 @@ export default function ModalTenants(onClose) {
               >
                 Address information
               </Typography>
-              <Stack gap="5px" flexDirection="row">
-                <Grid xs={3} justifyContent="start">
+              <Stack flexDirection="row">
+                <Grid item xs={3} justifyContent="start">
                   <Typography variant="subtitle2" margin="8px 0px 25px 0px">
                     Street:
                   </Typography>
@@ -163,19 +175,11 @@ export default function ModalTenants(onClose) {
                     Country:
                   </Typography>
                 </Grid>
-                <Grid xs={9} justifyContent="end" marginRight="10px">
-                  <Input
-                    name="street"
-                    error={errors.street}
-                    touched={touched.street}
-                  />
+                <Grid item xs={9} justifyContent="end" marginRight="10px">
+                  <Input name="street" />
 
-                  <Grid xs={4}>
-                    <Input
-                      name="zipCode"
-                      error={errors.zipCoder}
-                      touched={touched.zipCode}
-                    />
+                  <Grid item xs={4}>
+                    <Input name="zipCode" />
                   </Grid>
                   <Typography
                     variant="subtitle2"
@@ -188,6 +192,7 @@ export default function ModalTenants(onClose) {
                     City:{" "}
                   </Typography>
                   <Grid
+                    item
                     xs={4}
                     sx={{
                       position: "absolute",
@@ -195,20 +200,21 @@ export default function ModalTenants(onClose) {
                       right: "50px",
                     }}
                   >
-                    <Input
-                      name="zipCode"
-                      error={errors.city}
-                      touched={touched.city}
-                    />
+                    <Input name="city" />
                   </Grid>
-                  <Input
-                    name="emailContact"
-                    error={errors.country}
-                    touched={touched.country}
-                  />
+                  <Input name="country" />
                 </Grid>
               </Stack>
             </Grid>
+            <Box
+              sx={{
+                position: "absolute",
+                top: "655px",
+                left: "423px",
+              }}
+            >
+              <ButtonWithIcon text="Save" type="submit" />
+            </Box>
           </Form>
         )}
       </Formik>

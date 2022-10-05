@@ -50,10 +50,16 @@ export const useStyles = () => ({
         borderColor: `${theme.palette.primary.main} !important`,
       },
     },
+    "& .Mui-error": {
+      "& fieldset": {
+        borderColor: `${theme.palette.error.main} !important`,
+        border: `1px solid ${theme.palette.error.main} !important`,
+      },
+    },
     "&:hover": {
       cursor: "pointer",
       "& fieldset": {
-        borderColor: `${theme.palette.secondary.lostGreen} !important`,
+        borderColor: `${theme.palette.secondary.lostGreen} `,
       },
     },
   },

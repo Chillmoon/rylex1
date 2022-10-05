@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Tenants from "./pages/Tenants";
+import CallConnect from "./pages/CallConnect";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
           <Route path="/" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/tenants" element={<Tenants />} />
+          <Route path="/callconnect" element={<CallConnect />} />
         </Routes>
       </ThemeProvider>
     </main>

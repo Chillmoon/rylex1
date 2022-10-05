@@ -17,11 +17,13 @@ export default function MuiTable() {
   const tableStyles = useTableStyles();
   const style = useStyles();
   const classes = useButtonStyles();
+  const [data, setData] = useState();
 
   useEffect(() => {
     let isMounted = true;
     tableData().then((response) => {
       if (isMounted) {
+        console.log(response);
         setData(response.data.tenants);
       }
     });
@@ -30,8 +32,13 @@ export default function MuiTable() {
     };
   }, []);
 
-  const [data, setData] = useState();
   const [isOpen, setIsOpen] = useState(false);
+  const handleClose = () => {
+    setIsOpen(false);
+    tableData().then((response) => {
+      setData(response.data.tenants);
+    });
+  };
 
   return (
     <Box sx={tableStyles.table} className={search.root}>
@@ -121,16 +128,20 @@ export default function MuiTable() {
         actions={[
           {
             isFreeAction: true,
+            onClick: () => {
+              setIsOpen(true);
+            },
           },
         ]}
         onRowClick={(event, rowData) => {
+          console.log("hello");
           // window.open("https://www.youtube.com/");
           // Get your id from rowData and use with link.
           // window.open(`mysite.com/product/${rowData.id}`, );
           // event.stopPropagation();
         }}
       />
-      <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+      <Modal open={isOpen} onClose={handleClose}>
         <ModalTenants />
       </Modal>
     </Box>

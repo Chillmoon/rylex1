@@ -27,6 +27,7 @@ export const signUp = (userData, successCallback) => {
       console.log(response);
       successCallback && successCallback();
     })
+
     .catch((err) => err);
 };
 
@@ -43,10 +44,30 @@ export const tableData = () => {
 
 export const addTableData = (userData) => {
   axios
-    .post("https://api-shark.herokuapp.com/tenants", userData, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+    .post(
+      "https://api-shark.herokuapp.com/tenants",
+      {
+        name: userData.username,
+        type: userData.type.trim(),
+        email: userData.email,
+        address: {
+          street: userData.street,
+          city: userData.city,
+          zipCode: userData.zipCode,
+          country: userData.country,
+        },
+        contactInfo: {
+          name: userData.name,
+          phoneNumber: userData.phoneNumber,
+          email: userData.emailContact,
+        },
       },
-    })
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    )
+    .then((response) => console.log(response))
     .catch((err) => err);
 };

@@ -28,6 +28,37 @@ export const useTableStyles = () => ({
         borderRight: "none",
       },
     },
+    "& [class*=searchField]": {
+      "& .MuiOutlinedInput-adornedStart": {
+        padding: "10px",
+      },
+      "& .MuiOutlinedInput-root": {
+        height: "40px !important",
+      },
+      "&.MuiFormControl-root": {
+        width: "295px",
+      },
+      "& fieldset": {
+        border: `1px solid transparent !important`,
+        borderRadius: "5px",
+
+        "&:hover": {
+          cursor: "pointer",
+          borderColor: `transparent !important`,
+        },
+        // "& .Mui-focused": {
+        //   "& fieldset": {
+        //     borderColor: `${theme.palette.secondary.lostGreen} !important`,
+        //   },
+        // },
+        // "& .Mui-error": {
+        //   "& fieldset": {
+        //     borderColor: `${theme.palette.error.main} !important`,
+        //     border: `1px solid ${theme.palette.error.main} !important`,
+        //   },
+        // },
+      },
+    },
   },
   row: {
     fontSize: "14px",
@@ -136,6 +167,10 @@ export const select = makeStyles({
       "&>fieldset": {
         borderColor: `${theme.palette.primary.main} !important`,
       },
+      "& svg": {
+        transform: "rotate(180deg)",
+        transition: "all 200ms easy",
+      },
     },
     "&:hover": {
       cursor: "pointer",
@@ -154,7 +189,7 @@ export const search = makeStyles({
   root: {
     marginTop: "10px",
 
-    "&&&&&>fieldset": {
+    "&&&&& fieldset": {
       borderWidth: "1px !important",
       borderColor: `transparent !important`,
       backgroundColor: theme.palette.primary.white,
@@ -162,14 +197,14 @@ export const search = makeStyles({
       height: "45px",
       width: "400px",
     },
-    "&&&&&.Mui-focused": {
-      "&>fieldset": {
+    "&&&&& .Mui-focused": {
+      "& fieldset": {
         borderColor: `${theme.palette.primary.main} !important`,
       },
     },
     "&:hover": {
       cursor: "pointer",
-      "&&&&&>fieldset": {
+      "&&&&& fieldset": {
         borderColor: `transparent !important`,
       },
     },

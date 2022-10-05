@@ -34,7 +34,7 @@ export const SignupSchema = Yup.object().shape({
     .required("Required"),
 });
 
-export const ModalTenantsSchema = Yup.object().spape({
+export const ModalTenantsSchema = Yup.object().shape({
   username: Yup.string()
     .min(3, "Password minimum length should be 3")
     .max(20, "It`s too long")
@@ -43,16 +43,17 @@ export const ModalTenantsSchema = Yup.object().spape({
   type: Yup.string()
     .matches(
       /(Enterprise|ServiceProvider)/,
+      "Please enter Enterprise or ServiceProvider",
       {
         excludeEmptyString: true,
-      },
-      "Please enter Enterprise or ServiceProvider"
+      }
     )
     .required("Required"),
   name: Yup.string(),
   phoneNumber: Yup.string(),
-  emailContact: Yup.string().email("Invalid email").required("Required"),
+  emailContact: Yup.string().email("Invalid email"),
   zipCode: Yup.string(),
   city: Yup.string(),
   country: Yup.string(),
+  city: Yup.string(),
 });

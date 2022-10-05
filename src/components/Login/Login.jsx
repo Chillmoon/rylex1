@@ -27,7 +27,7 @@ export default function Login() {
     >
       {({ errors, touched }) => (
         <Form autoComplete="off">
-          <Grid xs={12} display="flex" flexDirection="column">
+          <Grid item xs={12} display="flex" flexDirection="column">
             <FormControl sx={{ width: "45ch" }}>
               <MyInput
                 touched={touched.username}
