@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, List, ListItem, Typography } from "@mui/material";
 import { Formik, Form } from "formik";
 import AddCircleOutline from "../../images/AddCircleOutline";
 import Input from "../Input/Input";
@@ -8,6 +8,7 @@ import { Stack } from "@mui/system";
 import { ModalTenantsSchema } from "../ValidationSchema/ValidationSchema";
 import ButtonWithIcon from "../Button";
 import { addTableData, tableData } from "../Axios/Axios";
+import { modalList } from "./Styles";
 
 export default function ModalTenants(handleClose) {
   const starStyle = {
