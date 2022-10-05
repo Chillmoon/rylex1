@@ -1,5 +1,6 @@
 import { Box, Link, Paper, Typography } from "@mui/material";
 import MaterialTable from "material-table";
+import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import Search from "../../images/Search";
 import AddCircleOutline from "../../images/AddCircleOutline";
@@ -14,6 +15,7 @@ import Modal from "../Modal/Modal";
 import ModalTenants from "../Modal/ModalTenants";
 
 export default function MuiTable() {
+  const navigate = useNavigate();
   const tableStyles = useTableStyles();
   const style = useStyles();
   const classes = useButtonStyles();
@@ -134,7 +136,7 @@ export default function MuiTable() {
           },
         ]}
         onRowClick={(event, rowData) => {
-          console.log("hello");
+          navigate("/callconnect");
           // window.open("https://www.youtube.com/");
           // Get your id from rowData and use with link.
           // window.open(`mysite.com/product/${rowData.id}`, );

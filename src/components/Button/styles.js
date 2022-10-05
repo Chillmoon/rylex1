@@ -141,12 +141,15 @@ export const useButtonStyles = () => ({
       justifyContent: "left !important",
       marginBottom: "30px !important",
       textTransform: "none",
+      whiteSpace: "nowrap",
     },
     nonActive: {
       color: `${theme.palette.primary.white} !important`,
       fontSize: "16px !important",
       fontWeight: "400 !important",
+      margin: "15px 0px",
       justifyContent: "left !important",
+      whiteSpace: "nowrap",
     },
     grey: {
       color: theme.palette.grey.grey,
