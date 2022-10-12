@@ -7,10 +7,9 @@ import {
   Typography,
   IconButton,
   MenuItem,
-  Button,
-  Menu,
   Select,
   InputAdornment,
+  Link,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Information from "../../images/Information";
@@ -19,6 +18,10 @@ import { useButtonStyles } from "../Button/styles";
 import Account from "../../images/Account";
 import { languageMenu, languageSelect, useNavBarStyles } from "./Styles";
 import { theme } from "../../styles/Theme";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import i18next from "i18next";
+import { useTranslation } from "react-i18next";
 
 export default function NavBar() {
   const navigate = useNavigate();
@@ -28,15 +31,31 @@ export default function NavBar() {
   const langMenu = languageMenu();
   const langSelect = languageSelect();
 
+  // const dispatch = useDispatch();
+  // const language = useSelector((state) => state.localization.language);
+
   const [language, setLanguage] = useState("EN");
+  const { t } = useTranslation();
   const handleChange = (event) => {
     setLanguage(event.target.value);
+    i18next.changeLanguage(event.target.value);
   };
 
   return (
     <AppBar position="static" sx={navBarClasses.appBar}>
       <Toolbar sx={navBarClasses.toolBar}>
-        <Typography color={theme.palette.grey.grey}>Tenants</Typography>
+        <Link
+          sx={{
+            color: theme.palette.grey.grey,
+            textDecoration: "none",
+            "&:hover": { cursor: "pointer" },
+          }}
+          onClick={() => {
+            navigate("/tenants");
+          }}
+        >
+          {t("tenants")}
+        </Link>
         <Stack direction="row" marginLeft="auto">
           <Select
             className={langSelect.root}
@@ -58,10 +77,10 @@ export default function NavBar() {
               </InputAdornment>
             }
           >
-            <MenuItem value={"EN"} sx={{ fontSize: "14px" }}>
+            <MenuItem value={"en"} sx={{ fontSize: "14px" }}>
               EN⠀English
             </MenuItem>
-            <MenuItem value={"RU"} sx={{ fontSize: "14px" }}>
+            <MenuItem value={"ru"} sx={{ fontSize: "14px" }}>
               RU⠀Russian
             </MenuItem>
           </Select>

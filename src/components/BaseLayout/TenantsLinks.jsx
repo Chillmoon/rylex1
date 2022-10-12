@@ -4,8 +4,12 @@ import CarbonHome from "../../images/CarbonHome";
 import Search from "../../images/Search";
 import { useButtonStyles } from "../Button/styles";
 import { theme } from "../../styles/Theme";
+import { useTranslation } from "react-i18next";
 
 export default function TenantsLinks() {
+  //Translation
+  const { t } = useTranslation();
+
   const classes = useButtonStyles();
   return (
     <Stack margin="90px 30% 0 15%">
@@ -14,8 +18,9 @@ export default function TenantsLinks() {
         startIcon={<CarbonHome />}
         sx={classes.buttonLink.active}
       >
-        Tenants
+        {t("tenants")}
       </Button>
+
       <Button
         href="#"
         startIcon={
@@ -32,7 +37,7 @@ export default function TenantsLinks() {
         }
         sx={classes.buttonLink.nonActive}
       >
-        Search
+        {t("search")}
       </Button>
     </Stack>
   );

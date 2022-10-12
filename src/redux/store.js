@@ -1,8 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
-import tableDataReducer from "./tableDataSlice";
+import dataTableSlice from "./dataTableSlice";
+import localizationSlice from "./localizationSlice";
+import selectedTenantSlice from "./selectedTenantSlice";
 
-export default configureStore({
+export const store = configureStore({
   reducer: {
-    data: tableDataReducer,
+    data: dataTableSlice,
+    tenant: selectedTenantSlice,
+    language: localizationSlice,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });

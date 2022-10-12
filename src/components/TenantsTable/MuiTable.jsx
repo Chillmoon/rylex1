@@ -1,46 +1,57 @@
-import { Box, Link, Paper, Typography } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import MaterialTable from "material-table";
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import Search from "../../images/Search";
 import AddCircleOutline from "../../images/AddCircleOutline";
 import { theme } from "../../styles/Theme";
-import { tableData } from "../Axios/Axios";
 import ButtonWithIcon from "../Button";
 import { useStyles } from "../Input/styles";
 import MyPagination from "./MyPagination";
-import { search, tableSearch, useTableStyles } from "./Style";
+import { search, useTableStyles } from "./Style";
 import { useButtonStyles } from "../Button/styles";
 import Modal from "../Modal/Modal";
 import ModalTenants from "../Modal/ModalTenants";
+import { useDispatch, useSelector } from "react-redux";
+import { dataTableRedux } from "../../redux/dataTableSlice";
+import { selectedTenantRedux } from "../../redux/selectedTenantSlice";
+import { useTranslation } from "react-i18next";
 
 export default function MuiTable() {
   const navigate = useNavigate();
   const tableStyles = useTableStyles();
   const style = useStyles();
   const classes = useButtonStyles();
-  const [data, setData] = useState();
 
-  useEffect(() => {
-    let isMounted = true;
-    tableData().then((response) => {
-      if (isMounted) {
-        console.log(response);
-        setData(response.data.tenants);
-      }
-    });
-    return () => {
-      isMounted = false;
-    };
-  }, []);
+  const { t } = useTranslation();
 
   const [isOpen, setIsOpen] = useState(false);
+
   const handleClose = () => {
     setIsOpen(false);
-    tableData().then((response) => {
-      setData(response.data.tenants);
-    });
   };
+
+  const dispatch = useDispatch();
+  const data = JSON.parse(
+    JSON.stringify(useSelector((state) => state.data.dataTable))
+  );
+
+  useEffect(() => {
+    dispatch(dataTableRedux());
+  }, []);
+
+  // useEffect(() => {
+  //   let isMounted = true;
+  //   tableData().then((response) => {
+  //     if (isMounted) {
+  //       console.log(response);
+  //       setData(response.data.tenants);
+  //     }
+  //   });
+  //   return () => {
+  //     isMounted = false;
+  //   };
+  // }, []);
 
   return (
     <Box sx={tableStyles.table} className={search.root}>
@@ -58,7 +69,7 @@ export default function MuiTable() {
             },
           },
           {
-            title: "ID",
+            title: `${t("id")}`,
             field: "_id",
 
             cellStyle: {
@@ -66,11 +77,11 @@ export default function MuiTable() {
             },
           },
           {
-            title: "Name",
+            title: `${t("name")}`,
             field: "name",
           },
           {
-            title: "Type",
+            title: `${t("type")}`,
             field: "type",
 
             headerStyle: {
@@ -81,6 +92,11 @@ export default function MuiTable() {
         icons={{
           Search: () => <Search />,
           ResetSearch: () => "",
+        }}
+        localization={{
+          toolbar: {
+            searchPlaceholder: `${t("search")}`,
+          },
         }}
         options={{
           searchFieldAlignment: "left",
@@ -121,7 +137,7 @@ export default function MuiTable() {
                   <AddCircleOutline />
                 </Box>
               }
-              text="Add"
+              text={t("add")}
               onClick={() => setIsOpen(true)}
               sx={classes.button}
             />
@@ -136,15 +152,23 @@ export default function MuiTable() {
           },
         ]}
         onRowClick={(event, rowData) => {
-          navigate("/callconnect");
-          // window.open("https://www.youtube.com/");
-          // Get your id from rowData and use with link.
-          // window.open(`mysite.com/product/${rowData.id}`, );
-          // event.stopPropagation();
+          dispatch(selectedTenantRedux(rowData._id));
+          navigate(`/callconnect`);
+
+          //callback function
         }}
+
+        // onRowClick={(event, rowData) => {
+        //   dispatch(setSelectedTenant(rowData));
+        //   navigate("/callconnect");
+        //   // window.open("https://www.youtube.com/");
+        //   // Get your id from rowData and use with link.
+        //   // window.open(`mysite.com/product/${rowData.id}`, );
+        //   // event.stopPropagation();
+        // }}
       />
       <Modal open={isOpen} onClose={handleClose}>
-        <ModalTenants />
+        <ModalTenants onClose={handleClose} />
       </Modal>
     </Box>
   );

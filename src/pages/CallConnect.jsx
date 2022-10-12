@@ -5,9 +5,11 @@ import CallConnectBase from "../components/CallConnectBase/CallConnectBase";
 
 export default function CallConnect() {
   return (
-    <BaseLayout
-      links={<CallConnectLinks />}
-      baseComponent={<CallConnectBase />}
-    />
+    <>
+      <BaseLayout
+        links={<CallConnectLinks />}
+        baseComponent={<CallConnectBase />}
+      />
+    </>
   );
 }

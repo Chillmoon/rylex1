@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, List, ListItem, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { Formik, Form } from "formik";
 import AddCircleOutline from "../../images/AddCircleOutline";
 import Input from "../Input/Input";
@@ -7,27 +7,20 @@ import { theme } from "../../styles/Theme";
 import { Stack } from "@mui/system";
 import { ModalTenantsSchema } from "../ValidationSchema/ValidationSchema";
 import ButtonWithIcon from "../Button";
-import { addTableData, tableData } from "../Axios/Axios";
-import { modalList } from "./Styles";
+import { addTableData } from "../Axios/Axios";
+import { dataTableRedux } from "../../redux/dataTableSlice";
+import { useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
 
-export default function ModalTenants(handleClose) {
+export default function ModalTenants({ onClose }) {
   const starStyle = {
     margin: "5px",
     display: "inline",
     color: theme.palette.primary.greenActive,
   };
+  const dispatch = useDispatch();
 
-  // const getChangedValues = (values, initialValues) => {
-  //   return Object.entries(values).reduce((acc, [key, value]) => {
-  //     const hasChanged = initialValues[key] !== value;
-
-  //     if (hasChanged) {
-  //       acc[key] = value;
-  //     }
-
-  //     return acc;
-  //   }, {});
-  // };
+  const { t } = useTranslation();
 
   return (
     <>
@@ -52,7 +45,7 @@ export default function ModalTenants(handleClose) {
         >
           <AddCircleOutline />
         </Box>
-        Add tenants
+        {t("add_tenants")}
       </Typography>
       <Formik
         initialValues={{
@@ -60,19 +53,24 @@ export default function ModalTenants(handleClose) {
           type: "",
           email: "",
 
-          street: "",
-          zipCode: "",
-          city: "",
-          country: "",
+          address: {
+            street: "",
+            zipCode: "",
+            city: "",
+            country: "",
+          },
 
-          name: "",
-          phoneNumber: "",
-          emailContact: "",
+          contactInfo: {
+            name: "",
+            phoneNumber: "",
+            emailContact: "",
+          },
         }}
         validationSchema={ModalTenantsSchema}
         onSubmit={(values) => {
-          console.log(values);
           addTableData(values);
+          dispatch(dataTableRedux());
+          onClose();
         }}
       >
         {({ errors, touched }) => (
@@ -93,17 +91,17 @@ export default function ModalTenants(handleClose) {
                     variant="subtitle2"
                     margin="8px 0px 25px 0px"
                   >
-                    Tenant name:<Box sx={starStyle}>*</Box>
+                    {t("tenant_name")}:<Box sx={starStyle}>*</Box>
                   </Typography>
                   <Typography component={"div"} variant="subtitle2">
-                    Type:<Box sx={starStyle}>*</Box>
+                    {t("type")}:<Box sx={starStyle}>*</Box>
                   </Typography>
                   <Typography
                     component={"div"}
                     variant="subtitle2"
                     sx={{ position: "absolute", top: "190px" }}
                   >
-                    Support e-mail:<Box sx={starStyle}>*</Box>
+                    {t("support_e-mail")}:<Box sx={starStyle}>*</Box>
                   </Typography>
                 </Grid>
                 <Grid item xs={9} justifyContent="end" marginRight="10px">
@@ -133,16 +131,18 @@ export default function ModalTenants(handleClose) {
                   fontWeight: "400",
                 }}
               >
-                Contact information
+                {t("contact_information")}
               </Typography>
               <Stack flexDirection="row">
                 <Grid item xs={3} justifyContent="start">
                   <Typography variant="subtitle2" margin="8px 0px 25px 0px">
-                    Contact name:
+                    {t("contact_name")}:
                   </Typography>
-                  <Typography variant="subtitle2">Phone number: </Typography>
+                  <Typography variant="subtitle2">
+                    {t("phone_number")}:{" "}
+                  </Typography>
                   <Typography variant="subtitle2" margin="23px 0px 0px 0px">
-                    Email:
+                    {t("email")}:
                   </Typography>
                 </Grid>
                 <Grid item xs={9} justifyContent="end" marginRight="10px">
@@ -164,16 +164,18 @@ export default function ModalTenants(handleClose) {
                   fontWeight: "400",
                 }}
               >
-                Address information
+                {t("address_information")}
               </Typography>
               <Stack flexDirection="row">
                 <Grid item xs={3} justifyContent="start">
                   <Typography variant="subtitle2" margin="8px 0px 25px 0px">
-                    Street:
+                    {t("street")}:
                   </Typography>
-                  <Typography variant="subtitle2">Postal code: </Typography>
+                  <Typography variant="subtitle2">
+                    {t("postal_code")}:{" "}
+                  </Typography>
                   <Typography variant="subtitle2" margin="23px 0px 0px 0px">
-                    Country:
+                    {t("country")}:
                   </Typography>
                 </Grid>
                 <Grid item xs={9} justifyContent="end" marginRight="10px">
@@ -187,10 +189,10 @@ export default function ModalTenants(handleClose) {
                     sx={{
                       position: "absolute",
                       bottom: "187px",
-                      left: "295px",
+                      left: "288px",
                     }}
                   >
-                    City:{" "}
+                    {t("city")}:{" "}
                   </Typography>
                   <Grid
                     item
@@ -214,7 +216,7 @@ export default function ModalTenants(handleClose) {
                 left: "423px",
               }}
             >
-              <ButtonWithIcon text="Save" type="submit" />
+              <ButtonWithIcon text={t("save")} type="submit" />
             </Box>
           </Form>
         )}

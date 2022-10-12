@@ -20,6 +20,7 @@ export const languageSelect = makeStyles({
   root: {
     fontSize: "14px",
     padding: "5px",
+    textTransform: "uppercase",
 
     "& .MuiOutlinedInput-input": {
       padding: "0px !important",
@@ -65,14 +66,19 @@ export const languageMenu = makeStyles({
         justifyContent: "left",
 
         "&.Mui-selected": {
-          border: `1px solid ${theme.palette.primary.main}`,
-          backgroundColor: theme.palette.secondary.lightGreen,
+          border: `1px solid transparent`,
+          backgroundColor: theme.palette.primary.white,
           color: theme.palette.primary.main,
-          textDecoration: "underline",
         },
         "&:hover": {
           backgroundColor: theme.palette.secondary.lightGreen,
           color: theme.palette.primary.main,
+          textDecoration: "underline",
+        },
+        "&.Mui-focused": {
+          backgroundColor: theme.palette.secondary.lightGreen,
+          color: theme.palette.primary.main,
+          border: `1px solid ${theme.palette.primary.main}`,
           textDecoration: "underline",
         },
       },

@@ -43,31 +43,31 @@ export const tableData = () => {
 };
 
 export const addTableData = (userData) => {
+  const cleanDeep = require("clean-deep");
+  const values = {
+    name: userData.username,
+    type: userData.type.trim(),
+    email: userData.email,
+    address: {
+      street: userData.street,
+      city: userData.city,
+      zipCode: userData.zipCode,
+      country: userData.country,
+    },
+    contactInfo: {
+      name: userData.name,
+      phoneNumber: userData.phoneNumber,
+      email: userData.emailContact,
+    },
+  };
+  const cleanValues = cleanDeep(values);
+
   axios
-    .post(
-      "https://api-shark.herokuapp.com/tenants",
-      {
-        name: userData.username,
-        type: userData.type.trim(),
-        email: userData.email,
-        address: {
-          street: userData.street,
-          city: userData.city,
-          zipCode: userData.zipCode,
-          country: userData.country,
-        },
-        contactInfo: {
-          name: userData.name,
-          phoneNumber: userData.phoneNumber,
-          email: userData.emailContact,
-        },
+    .post("https://api-shark.herokuapp.com/tenants", cleanValues, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      }
-    )
+    })
     .then((response) => console.log(response))
     .catch((err) => err);
 };

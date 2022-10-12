@@ -3,8 +3,13 @@ import { theme } from "../../styles/Theme";
 
 export const accordion = makeStyles({
   root: {
+    "& .Mui-expanded": {
+      backgroundColor: "blue",
+    },
+    "& .MuiPaper-root": {
+      height: "100px !important",
+    },
     "& [class*=MuiAccordion-root]": {
-      borderRadius: "1px !important",
       boxShadow: "none",
     },
   },

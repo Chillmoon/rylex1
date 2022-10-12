@@ -9,11 +9,14 @@ import {
   AccordionDetails,
 } from "@mui/material";
 import React from "react";
+import { useSelector } from "react-redux";
 import ArrowSelect from "../../images/ArrowSelect";
 import { theme } from "../../styles/Theme";
 import { accordion } from "./Styles";
 
 export default function CallConnectBase() {
+  const tenant = useSelector((state) => state.tenant.selectedTenant);
+  console.log(tenant);
   return (
     <Box
       sx={{
@@ -68,10 +71,10 @@ export default function CallConnectBase() {
                 color: theme.palette.primary.black,
               }}
             >
-              <ListItem>natexis.uk</ListItem>
-              <ListItem>Enterprise</ListItem>
-              <ListItem>CallConnect</ListItem>
-              <ListItem>Smth</ListItem>
+              <ListItem>{tenant._id}</ListItem>
+              <ListItem>{tenant.type}</ListItem>
+              <ListItem>{tenant.name}</ListItem>
+              <ListItem>{tenant.email}</ListItem>
               <ListItem sx={{ color: theme.palette.primary.main }}>
                 active
               </ListItem>
@@ -79,7 +82,7 @@ export default function CallConnectBase() {
           </Grid>
         </Grid>
         <Grid container flexDirection="column">
-          <Accordion className={accordion.root}>
+          <Accordion square={true} className={accordion.root}>
             <AccordionSummary expandIcon={<ArrowSelect />}>
               <Typography sx={{ paddingLeft: "10px" }}>Main contact</Typography>
             </AccordionSummary>
@@ -106,9 +109,9 @@ export default function CallConnectBase() {
                       color: theme.palette.primary.black,
                     }}
                   >
-                    <ListItem>Max</ListItem>
-                    <ListItem>+35812458996</ListItem>
-                    <ListItem>callconnect@mail.com</ListItem>
+                    <ListItem>{tenant.contactInfo.name}</ListItem>
+                    <ListItem>{tenant.contactInfo.phoneNumber}</ListItem>
+                    <ListItem>{tenant.contactInfo.email}</ListItem>
                   </List>
                 </Grid>
               </Box>
@@ -144,10 +147,10 @@ export default function CallConnectBase() {
                       color: theme.palette.primary.black,
                     }}
                   >
-                    <ListItem>17A Fitzroy Square</ListItem>
-                    <ListItem>W1T 6EG</ListItem>
-                    <ListItem>London</ListItem>
-                    <ListItem>Great Britain</ListItem>
+                    <ListItem>{tenant.address.street}</ListItem>
+                    <ListItem>{tenant.address.zipCode}</ListItem>
+                    <ListItem>{tenant.address.city}</ListItem>
+                    <ListItem>{tenant.address.country}</ListItem>
                   </List>
                 </Grid>
               </Box>

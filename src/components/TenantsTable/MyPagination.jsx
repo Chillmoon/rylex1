@@ -20,11 +20,15 @@ import {
   selectMenu,
   useTableStyles,
 } from "./Style";
+import { useTranslation } from "react-i18next";
+
 export default function MyPagination(props) {
   const selectMenuStyle = selectMenu();
   const paginationClass = pagination();
   const paginationArrowsClass = paginationArrows();
   const paginationSelect = select();
+
+  const { t } = useTranslation();
 
   const styles = useTableStyles();
   const {
@@ -99,7 +103,7 @@ export default function MyPagination(props) {
             margin: "0px 0px 0px 10px",
           }}
         >
-          per page
+          {t("per_page")}
         </Typography>
         <Typography
           sx={{
@@ -108,7 +112,7 @@ export default function MyPagination(props) {
             margin: "0px 66px 0px 50px",
           }}
         >
-          {from}-{to} of {count}
+          {from}-{to} {t("of")} {count}
         </Typography>
         <IconButton
           sx={{ marginLeft: "-66px" }}
