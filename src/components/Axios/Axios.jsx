@@ -11,7 +11,6 @@ export const logIn = (username, password, successCallback) => {
       localStorage.setItem("token", response.data.accessToken);
       const token = localStorage.getItem("token");
       successCallback && successCallback();
-      console.log(token);
     })
     .catch((err) => err);
 };
@@ -69,5 +68,44 @@ export const addTableData = (userData) => {
       },
     })
     .then((response) => console.log(response))
+    .catch((err) => err);
+};
+
+export const editTenant = ({ userData, id, tenantData }) => {
+  const cleanDeep = require("clean-deep");
+  const values = {
+    name: tenantData.name,
+    type: tenantData.type,
+    email: userData.email,
+    address: {
+      street: userData.street,
+      city: userData.city,
+      zipCode: userData.zipCode,
+      country: userData.country,
+    },
+    contactInfo: {
+      name: userData.name,
+      phoneNumber: userData.phoneNumber,
+      email: userData.emailContact,
+    },
+  };
+  const cleanValues = cleanDeep(values);
+  console.log(id);
+  axios
+    .put(`https://api-shark.herokuapp.com/tenants/${id}`, cleanValues, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .catch((err) => err);
+};
+
+export const test = (id) => {
+  axios
+    .get(`https://api-shark.herokuapp.com/tenants/${id}/phoneNumbers`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
     .catch((err) => err);
 };

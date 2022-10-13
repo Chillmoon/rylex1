@@ -57,3 +57,14 @@ export const ModalTenantsSchema = Yup.object().shape({
   country: Yup.string(),
   city: Yup.string(),
 });
+
+export const ModalCallConnectSchema = Yup.object().shape({
+  email: Yup.string().email("Invalid email"),
+  name: Yup.string(),
+  phoneNumber: Yup.string(),
+  emailContact: Yup.string().email("Invalid email"),
+  zipCode: Yup.string(),
+  city: Yup.string(),
+  country: Yup.string(),
+  city: Yup.string(),
+});

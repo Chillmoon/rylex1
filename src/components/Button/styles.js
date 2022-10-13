@@ -127,8 +127,8 @@ export const useButtonStyles = () => ({
     margin: "2px",
     "&:hover": {
       backgroundColor: "transparent !important",
+      cursor: "pointer",
     },
-
     "&:disabled": {
       color: `${theme.palette.grey.grey} !important`,
     },

@@ -19,7 +19,7 @@ import {
   select,
   selectMenu,
   useTableStyles,
-} from "./Style";
+} from "../MuiTable/Style";
 import { useTranslation } from "react-i18next";
 
 export default function MyPagination(props) {

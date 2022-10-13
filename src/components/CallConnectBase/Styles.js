@@ -14,3 +14,22 @@ export const accordion = makeStyles({
     },
   },
 });
+
+export const useStyles = () => ({
+  listItemType: {
+    listStyle: "none",
+    padding: "0px",
+    color: theme.palette.grey.grey,
+    "& li": {
+      height: "40px",
+    },
+  },
+  listItemState: {
+    listStyle: "none",
+    padding: "0px",
+    color: theme.palette.primary.black,
+    "& li": {
+      height: "40px ",
+    },
+  },
+});

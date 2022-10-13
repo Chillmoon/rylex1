@@ -4,9 +4,9 @@ import axios from "axios";
 
 export const selectedTenantRedux = createAsyncThunk(
   "tenant/selectedTenantRedux",
-  async (tenantId, { rejectWithValue, dispatch }) => {
+  async (id, { rejectWithValue, dispatch }) => {
     const result = await axios.get(
-      `https://api-shark.herokuapp.com/tenants/${tenantId}`,
+      `https://api-shark.herokuapp.com/tenants/${id}`,
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,

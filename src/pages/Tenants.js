@@ -1,12 +1,15 @@
 import React from "react";
-import MuiTable from "../components/TenantsTable/MuiTable";
 import BaseLayout from "../components/BaseLayout/BaseLayout";
 import TenantsLinks from "../components/BaseLayout/TenantsLinks";
+import MuiTableTenants from "../components/TenantsTable/MuiTableTenants";
 
 export default function Tenants() {
   return (
     <>
-      <BaseLayout baseComponent={<MuiTable />} links={<TenantsLinks />} />
+      <BaseLayout
+        baseComponent={<MuiTableTenants />}
+        links={<TenantsLinks />}
+      />
     </>
   );
 }

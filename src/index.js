@@ -9,9 +9,8 @@ import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 
-//Localization
 i18next
-  .use(initReactI18next) // passes i18n down to react-i18next
+  .use(initReactI18next)
   .use(LanguageDetector)
   .init({
     resources: {
@@ -46,8 +45,11 @@ i18next
           of: "of",
           add_tenants: "Add tenants",
           contact_information: "Contact information",
-          cancel: "Отмена",
-          save: "Сохранить",
+          cancel: "Cancel",
+          save: "Save",
+          account_status: "Account status",
+          active: "active",
+          edit_tenants_details: "Edit tenants details",
         },
       },
       ru: {
@@ -58,19 +60,19 @@ i18next
           add: "Добавить",
           name: "Имя",
           type: "Тип",
-          call_connect: "Соединить с пользователем",
+          call_connect: "Связаться",
           details: "Подробности",
           groups: "Группы",
           phone_numbers: "Номера телефонов",
           admins: "Администраторы",
           users: "Пользователи",
           domain: "Домен",
-          tenant_name: "Имя",
-          "support_e-mail": "Почта",
+          tenant_name: "Имя арендатора",
+          "support_e-mail": "Почта поддержки",
           account_status: "Статус аккаунта",
           main_contact: "Основной контакт",
           contact_name: "Имя контакта",
-          phone_number: "Номер",
+          phone_number: "Номер телефона",
           email: "Почта",
           address_information: "Адресс",
           street: "Улица",
@@ -83,6 +85,9 @@ i18next
           contact_information: "Контактная информация",
           cancel: "Отмена",
           save: "Сохранить",
+          account_status: "Статус аккаунта",
+          active: "активный",
+          edit_tenants_details: "Редактировать данные об арендаторе",
         },
       },
     },
@@ -96,7 +101,6 @@ i18next
   });
 
 ReactDOM.render(
-  // <React.StrictMode>
   <Suspense fallback={<div>Loading... </div>}>
     <BrowserRouter>
       <Provider store={store}>
@@ -105,9 +109,4 @@ ReactDOM.render(
     </BrowserRouter>
   </Suspense>,
   document.getElementById("root")
-  // </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals

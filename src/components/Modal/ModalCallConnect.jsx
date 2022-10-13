@@ -1,26 +1,21 @@
 import React from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import { Formik, Form } from "formik";
-import AddCircleOutline from "../../images/AddCircleOutline";
 import Input from "../Input/Input";
 import { theme } from "../../styles/Theme";
 import { Stack } from "@mui/system";
-import { ModalTenantsSchema } from "../ValidationSchema/ValidationSchema";
+import { ModalCallConnectSchema } from "../ValidationSchema/ValidationSchema";
 import ButtonWithIcon from "../Button";
-import { addTableData } from "../Axios/Axios";
-import { dataTableRedux } from "../../redux/dataTableSlice";
-import { useDispatch } from "react-redux";
+import { editTenant } from "../Axios/Axios";
 import { useTranslation } from "react-i18next";
+import Pencil from "../../images/Pencil";
+import { useDispatch, useSelector } from "react-redux";
+import { selectedTenantRedux } from "../../redux/selectedTenantSlice";
 
-export default function ModalTenants({ onClose }) {
-  const starStyle = {
-    margin: "5px",
-    display: "inline",
-    color: theme.palette.primary.greenActive,
-  };
-  const dispatch = useDispatch();
-
+export default function ModalCallConnect({ onClose, id }) {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const tenant = useSelector((state) => state.tenant.selectedTenant);
 
   return (
     <>
@@ -43,35 +38,30 @@ export default function ModalTenants({ onClose }) {
             height: "25px",
           }}
         >
-          <AddCircleOutline />
+          <Pencil />
         </Box>
-        {t("add_tenants")}
+        {t("edit_tenants_details")}
       </Typography>
       <Formik
         initialValues={{
-          username: "",
-          type: "",
-          email: "",
+          email: tenant?.email,
 
-          address: {
-            street: "",
-            zipCode: "",
-            city: "",
-            country: "",
-          },
+          street: tenant?.address?.street,
+          zipCode: tenant?.address?.zipCode,
+          city: tenant?.address?.city,
+          country: tenant?.address?.country,
 
-          contactInfo: {
-            name: "",
-            phoneNumber: "",
-            emailContact: "",
-          },
+          name: tenant?.contactInfo?.name,
+          phoneNumber: tenant?.contactInfo?.phoneNumber,
+          emailContact: tenant?.contactInfo?.email,
         }}
-        validationSchema={ModalTenantsSchema}
+        validationSchema={ModalCallConnectSchema}
         onSubmit={(values) => {
-          addTableData(values);
-          dispatch(dataTableRedux());
+          editTenant({ userData: values, id: id, tenantData: tenant });
+          dispatch(selectedTenantRedux(id));
           onClose();
         }}
+        // validator={() => ({})}
       >
         {({ errors, touched }) => (
           <Form autoComplete="off">
@@ -91,30 +81,10 @@ export default function ModalTenants({ onClose }) {
                     variant="subtitle2"
                     margin="8px 0px 25px 0px"
                   >
-                    {t("tenant_name")}:<Box sx={starStyle}>*</Box>
-                  </Typography>
-                  <Typography component={"div"} variant="subtitle2">
-                    {t("type")}:<Box sx={starStyle}>*</Box>
-                  </Typography>
-                  <Typography
-                    component={"div"}
-                    variant="subtitle2"
-                    sx={{ position: "absolute", top: "190px" }}
-                  >
-                    {t("support_e-mail")}:<Box sx={starStyle}>*</Box>
+                    {t("support_e-mail")}:
                   </Typography>
                 </Grid>
                 <Grid item xs={8} justifyContent="end" marginRight="10px">
-                  <Input
-                    name="username"
-                    error={errors.username}
-                    touched={touched.username}
-                  />
-                  <Input
-                    name="type"
-                    error={errors.type}
-                    touched={touched.type}
-                  />
                   <Input
                     name="email"
                     error={errors.email}
@@ -126,7 +96,7 @@ export default function ModalTenants({ onClose }) {
                 variant="subtitle1"
                 sx={{
                   position: "absolute",
-                  top: "247px",
+                  top: "160px",
                   color: theme.palette.primary.black,
                   fontWeight: "400",
                 }}
@@ -159,7 +129,7 @@ export default function ModalTenants({ onClose }) {
                 variant="subtitle1"
                 sx={{
                   position: "absolute",
-                  top: "445px",
+                  top: "360px",
                   color: theme.palette.primary.black,
                   fontWeight: "400",
                 }}
@@ -188,7 +158,7 @@ export default function ModalTenants({ onClose }) {
                     variant="subtitle2"
                     sx={{
                       position: "absolute",
-                      bottom: "187px",
+                      bottom: "270px",
                       left: "288px",
                     }}
                   >
@@ -199,7 +169,7 @@ export default function ModalTenants({ onClose }) {
                     xs={4}
                     sx={{
                       position: "absolute",
-                      bottom: "172px",
+                      bottom: "256px",
                       right: "50px",
                     }}
                   >

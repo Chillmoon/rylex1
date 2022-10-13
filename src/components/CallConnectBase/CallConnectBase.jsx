@@ -7,16 +7,41 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  IconButton,
 } from "@mui/material";
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { selectedTenantRedux } from "../../redux/selectedTenantSlice";
+import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
 import ArrowSelect from "../../images/ArrowSelect";
 import { theme } from "../../styles/Theme";
-import { accordion } from "./Styles";
+import { accordion, useStyles } from "./Styles";
+import { useParams } from "react-router-dom";
+import Pencil from "../../images/Pencil";
+import { useButtonStyles } from "../Button/styles";
+import Modal from "../Modal/Modal";
+import ModalCallConnect from "../Modal/ModalCallConnect";
 
 export default function CallConnectBase() {
+  const dispatch = useDispatch();
+  const { t } = useTranslation();
+  const style = useStyles();
+  const classes = useButtonStyles();
+  const { id } = useParams();
+
+  const [isOpen, setIsOpen] = useState(false);
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+  const handleClick = () => {
+    setIsOpen(true);
+  };
+
+  useEffect(() => {
+    dispatch(selectedTenantRedux(id));
+  }, []);
   const tenant = useSelector((state) => state.tenant.selectedTenant);
-  console.log(tenant);
+
   return (
     <Box
       sx={{
@@ -24,9 +49,9 @@ export default function CallConnectBase() {
       }}
     >
       <Typography variant="h5" sx={{ margin: "40px 0px" }}>
-        Call connect
+        {t("call_connect")}
       </Typography>
-      <Typography variant="subtitle1">Details</Typography>
+      <Typography variant="subtitle1">{t("details")}</Typography>
       <div
         style={{
           borderTop: `1px solid ${theme.palette.secondary.main}`,
@@ -44,39 +69,36 @@ export default function CallConnectBase() {
           width: "480px",
         }}
       >
+        <IconButton
+          onClick={handleClick}
+          sx={classes.iconButton}
+          style={{
+            paddingBottom: "0 !important",
+          }}
+        >
+          <Pencil />
+        </IconButton>
         <Grid
           container
           sx={{ display: "flex", flexDirection: "row", padding: "15px " }}
         >
           <Grid item xs={5}>
-            <List
-              style={{
-                listStyle: "none",
-                padding: "0px",
-                color: theme.palette.grey.grey,
-              }}
-            >
-              <ListItem>Domain:</ListItem>
-              <ListItem>Type:</ListItem>
-              <ListItem>Tenant name:</ListItem>
-              <ListItem>Support e-mail:</ListItem>
-              <ListItem>Account status:</ListItem>
+            <List sx={style.listItemType}>
+              <ListItem>{t("domain")}:</ListItem>
+              <ListItem>{t("type")}:</ListItem>
+              <ListItem>{t("tenant_name")}:</ListItem>
+              <ListItem>{t("support_e-mail")}:</ListItem>
+              <ListItem>{t("account_status")}:</ListItem>
             </List>
           </Grid>
           <Grid item xs={7}>
-            <List
-              style={{
-                listStyle: "none",
-                padding: "0px",
-                color: theme.palette.primary.black,
-              }}
-            >
-              <ListItem>{tenant._id}</ListItem>
-              <ListItem>{tenant.type}</ListItem>
-              <ListItem>{tenant.name}</ListItem>
-              <ListItem>{tenant.email}</ListItem>
+            <List sx={style.listItemState}>
+              <ListItem>{id}</ListItem>
+              <ListItem>{tenant?.type}</ListItem>
+              <ListItem>{tenant?.name}</ListItem>
+              <ListItem>{tenant?.email}</ListItem>
               <ListItem sx={{ color: theme.palette.primary.main }}>
-                active
+                {t("active")}
               </ListItem>
             </List>
           </Grid>
@@ -84,34 +106,24 @@ export default function CallConnectBase() {
         <Grid container flexDirection="column">
           <Accordion square={true} className={accordion.root}>
             <AccordionSummary expandIcon={<ArrowSelect />}>
-              <Typography sx={{ paddingLeft: "10px" }}>Main contact</Typography>
+              <Typography sx={{ paddingLeft: "10px" }}>
+                {t("main_contact")}
+              </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Box sx={{ display: "flex", flexDirection: "row" }}>
                 <Grid item xs={5}>
-                  <List
-                    style={{
-                      listStyle: "none",
-                      padding: "0px",
-                      color: theme.palette.grey.grey,
-                    }}
-                  >
-                    <ListItem>Contact name:</ListItem>
-                    <ListItem>Phone number:</ListItem>
-                    <ListItem>Email:</ListItem>
+                  <List sx={style.listItemType}>
+                    <ListItem>{t("contact_name")}:</ListItem>
+                    <ListItem>{t("phone_number")}:</ListItem>
+                    <ListItem>{t("email")}:</ListItem>
                   </List>
                 </Grid>
                 <Grid item xs={7}>
-                  <List
-                    style={{
-                      listStyle: "none",
-                      padding: "0px",
-                      color: theme.palette.primary.black,
-                    }}
-                  >
-                    <ListItem>{tenant.contactInfo.name}</ListItem>
-                    <ListItem>{tenant.contactInfo.phoneNumber}</ListItem>
-                    <ListItem>{tenant.contactInfo.email}</ListItem>
+                  <List sx={style.listItemState}>
+                    <ListItem>{tenant?.contactInfo?.name}</ListItem>
+                    <ListItem>{tenant?.contactInfo?.phoneNumber}</ListItem>
+                    <ListItem>{tenant?.contactInfo?.email}</ListItem>
                   </List>
                 </Grid>
               </Box>
@@ -120,37 +132,25 @@ export default function CallConnectBase() {
           <Accordion className={accordion.root}>
             <AccordionSummary expandIcon={<ArrowSelect />}>
               <Typography sx={{ paddingLeft: "10px" }}>
-                Address information
+                {t("address_information")}
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Box sx={{ display: "flex", flexDirection: "row" }}>
                 <Grid item xs={5}>
-                  <List
-                    style={{
-                      listStyle: "none",
-                      padding: "0px",
-                      color: theme.palette.grey.grey,
-                    }}
-                  >
-                    <ListItem>Street:</ListItem>
-                    <ListItem>Postal code:</ListItem>
-                    <ListItem>City:</ListItem>
-                    <ListItem>Country:</ListItem>
+                  <List sx={style.listItemType}>
+                    <ListItem>{t("street")}:</ListItem>
+                    <ListItem>{t("postal_code")}:</ListItem>
+                    <ListItem>{t("city")}:</ListItem>
+                    <ListItem>{t("country")}:</ListItem>
                   </List>
                 </Grid>
                 <Grid item xs={7}>
-                  <List
-                    style={{
-                      listStyle: "none",
-                      padding: "0px",
-                      color: theme.palette.primary.black,
-                    }}
-                  >
-                    <ListItem>{tenant.address.street}</ListItem>
-                    <ListItem>{tenant.address.zipCode}</ListItem>
-                    <ListItem>{tenant.address.city}</ListItem>
-                    <ListItem>{tenant.address.country}</ListItem>
+                  <List sx={style.listItemState}>
+                    <ListItem>{tenant?.address?.street}</ListItem>
+                    <ListItem>{tenant?.address?.zipCode}</ListItem>
+                    <ListItem>{tenant?.address?.city}</ListItem>
+                    <ListItem>{tenant?.address?.country}</ListItem>
                   </List>
                 </Grid>
               </Box>
@@ -158,6 +158,9 @@ export default function CallConnectBase() {
           </Accordion>
         </Grid>
       </Grid>
+      <Modal open={isOpen} onClose={handleClose}>
+        <ModalCallConnect onClose={handleClose} id={id} />
+      </Modal>
     </Box>
   );
 }

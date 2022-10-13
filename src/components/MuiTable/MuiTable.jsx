@@ -1,94 +1,33 @@
 import { Box, Paper } from "@mui/material";
 import MaterialTable from "material-table";
-import { useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Search from "../../images/Search";
 import AddCircleOutline from "../../images/AddCircleOutline";
 import { theme } from "../../styles/Theme";
 import ButtonWithIcon from "../Button";
-import { useStyles } from "../Input/styles";
-import MyPagination from "./MyPagination";
-import { search, useTableStyles } from "./Style";
 import { useButtonStyles } from "../Button/styles";
-import Modal from "../Modal/Modal";
-import ModalTenants from "../Modal/ModalTenants";
-import { useDispatch, useSelector } from "react-redux";
-import { dataTableRedux } from "../../redux/dataTableSlice";
-import { selectedTenantRedux } from "../../redux/selectedTenantSlice";
 import { useTranslation } from "react-i18next";
+import MyPagination from "../TenantsTable/MyPagination";
+import { useTableStyles, search } from "./Style";
+import Modal from "../Modal/Modal";
 
-export default function MuiTable() {
-  const navigate = useNavigate();
+export default function MuiTable({ data, columns, handleRowClick, modal }) {
   const tableStyles = useTableStyles();
-  const style = useStyles();
   const classes = useButtonStyles();
 
-  const { t } = useTranslation();
-
   const [isOpen, setIsOpen] = useState(false);
-
   const handleClose = () => {
     setIsOpen(false);
   };
 
-  const dispatch = useDispatch();
-  const data = JSON.parse(
-    JSON.stringify(useSelector((state) => state.data.dataTable))
-  );
-
-  useEffect(() => {
-    dispatch(dataTableRedux());
-  }, []);
-
-  // useEffect(() => {
-  //   let isMounted = true;
-  //   tableData().then((response) => {
-  //     if (isMounted) {
-  //       console.log(response);
-  //       setData(response.data.tenants);
-  //     }
-  //   });
-  //   return () => {
-  //     isMounted = false;
-  //   };
-  // }, []);
+  const { t } = useTranslation();
 
   return (
     <Box sx={tableStyles.table} className={search.root}>
       <MaterialTable
         title={null}
         data={data}
-        columns={[
-          {
-            title: "№",
-            render: (rowData) => rowData.tableData.id + 1,
-            width: "10%",
-
-            headerStyle: {
-              borderRadius: "5px 0px 0px 0px",
-            },
-          },
-          {
-            title: `${t("id")}`,
-            field: "_id",
-
-            cellStyle: {
-              color: theme.palette.primary.greenActive,
-            },
-          },
-          {
-            title: `${t("name")}`,
-            field: "name",
-          },
-          {
-            title: `${t("type")}`,
-            field: "type",
-
-            headerStyle: {
-              borderRadius: "0px 5px 0px 0px",
-            },
-          },
-        ]}
+        columns={columns}
         icons={{
           Search: () => <Search />,
           ResetSearch: () => "",
@@ -101,7 +40,6 @@ export default function MuiTable() {
         options={{
           searchFieldAlignment: "left",
           searchFieldVariant: "outlined",
-          // searchFieldStyle: style.searchInput,
           draggable: false,
           sorting: false,
           paging: true,
@@ -151,24 +89,10 @@ export default function MuiTable() {
             },
           },
         ]}
-        onRowClick={(event, rowData) => {
-          dispatch(selectedTenantRedux(rowData._id));
-          navigate(`/callconnect`);
-
-          //callback function
-        }}
-
-        // onRowClick={(event, rowData) => {
-        //   dispatch(setSelectedTenant(rowData));
-        //   navigate("/callconnect");
-        //   // window.open("https://www.youtube.com/");
-        //   // Get your id from rowData and use with link.
-        //   // window.open(`mysite.com/product/${rowData.id}`, );
-        //   // event.stopPropagation();
-        // }}
+        onRowClick={handleRowClick}
       />
       <Modal open={isOpen} onClose={handleClose}>
-        <ModalTenants onClose={handleClose} />
+        {modal}
       </Modal>
     </Box>
   );

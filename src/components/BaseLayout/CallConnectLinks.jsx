@@ -8,9 +8,13 @@ import Phone from "../../images/Phone";
 import Teamwork from "../../images/Teamwork";
 import Privacy from "../../images/Privacy";
 import PersonOutline from "../../images/PersonOutline";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 export default function CallConnectLinks() {
+  const { t } = useTranslation();
   const classes = useButtonStyles();
+  const navigate = useNavigate();
   return (
     <>
       <Stack margin="90px 30% 0 15%">
@@ -19,7 +23,7 @@ export default function CallConnectLinks() {
           startIcon={<Business />}
           sx={classes.buttonLink.active}
         >
-          CallConnect
+          {t("call_connect")}
         </Button>
         <div
           style={{
@@ -34,21 +38,22 @@ export default function CallConnectLinks() {
           startIcon={<Teamwork />}
           sx={classes.buttonLink.nonActive}
         >
-          Groups
+          {t("groups")}
         </Button>
         <Button
-          href="#"
+          onSubmit={navigate("/callconnect/:id/phonenumbers")}
           startIcon={<Phone />}
+          type="submit"
           sx={classes.buttonLink.nonActive}
         >
-          Phone numbers
+          {t("phone_number")}
         </Button>
         <Button
           href="#"
           startIcon={<Privacy />}
           sx={classes.buttonLink.nonActive}
         >
-          Admins
+          {t("admins")}
         </Button>
         <Button
           href="#"
@@ -66,7 +71,7 @@ export default function CallConnectLinks() {
           }
           sx={classes.buttonLink.nonActive}
         >
-          Users
+          {t("users")}
         </Button>
         <Button
           href="#"
@@ -84,7 +89,7 @@ export default function CallConnectLinks() {
           }
           sx={classes.buttonLink.nonActive}
         >
-          Search
+          {t("search")}
         </Button>
       </Stack>
     </>
