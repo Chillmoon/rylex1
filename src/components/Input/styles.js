@@ -6,12 +6,11 @@ export const useStyles = () => ({
     background: theme.palette.secondary.lightGreen,
     borderRadius: "5px",
     width: "100%",
-    border: `none`,
-    borderColor: "bluePurple",
+    // border: `none`,
 
     "& fieldset": {
-      border: `1px solid `,
-      borderColor: "transparent !important",
+      border: `1px solid transparent !important`,
+
       "&:hover": {
         borderColor: "transparent ",
       },
@@ -28,38 +27,43 @@ export const useStyles = () => ({
         },
       },
     },
-    "&:valid": {
-      boxShadow: `0 0 0 1px ${theme.palette.primary.greenActive}`,
+  },
+
+  searchInput: {
+    borderRadius: "5px",
+    "&.MuiFormControl-root": {
+      height: "40px !important",
+      width: "100%", // width: "295px",
+      margin: "3px 10px",
     },
 
-    // "&:invalid": {
-    //   boxShadow: `0 0 0 1px ${theme.palette.error.main}`,
-    // },
-  },
-  searchInput: {
-    margin: "20px 0px 20px 0px",
-    border: "red !important",
-    background: theme.palette.primary.white,
-    borderRadius: "5px",
-    height: "45px",
-    width: "400px",
+    "& .MuiOutlinedInput-input": {
+      padding: "7px 10px",
+      backgroundColor: theme.palette.primary.white,
+    },
 
     "& fieldset": {
-      border: "none !important",
-    },
-
-    "&:active": {
       border: `1px solid ${theme.palette.secondary.lostGreen} !important`,
     },
-
-    "&:hover": {
-      border: "none",
+    "&.Mui-focused": {
+      "&>fieldset": {
+        borderColor: `${theme.palette.primary.main} !important`,
+      },
     },
-
-    "&:invalid": {
-      border: `1px solid ${theme.palette.error.main}`,
+    "& .Mui-error": {
+      "& fieldset": {
+        borderColor: `${theme.palette.error.main} !important`,
+        border: `1px solid ${theme.palette.error.main} !important`,
+      },
+    },
+    "&:hover": {
+      cursor: "pointer",
+      "& fieldset": {
+        borderColor: `${theme.palette.secondary.lostGreen} `,
+      },
     },
   },
+
   errorMessage: {
     position: "absolute",
     color: theme.palette.primary.main,

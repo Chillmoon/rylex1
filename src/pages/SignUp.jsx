@@ -1,9 +1,9 @@
 import React from "react";
 import { Grid, Typography } from "@mui/material";
 import Box from "@mui/system/Box";
-import Register from "../components/Register";
-import LogoWithName from "../components/LogoWithName";
-import SocialLinks from "../components/SocialLinks";
+import Register from "../components/Register/Register";
+import LogoWithName from "../components/LogoWithName/LogoWithName";
+import SocialLinks from "../components/SocialLinks/SocialLinks";
 import pattern from "../images/pattern.svg";
 import SignButton from "../components/Button/SignButton";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +15,7 @@ export default function SignUp() {
     <>
       <Grid container height={"100vh"}>
         <Grid
+          item
           xs={12}
           sm={5}
           sx={{
@@ -60,6 +61,7 @@ export default function SignUp() {
           </Box>
         </Grid>
         <Grid
+          item
           xs={12}
           sm={7}
           display="flex"

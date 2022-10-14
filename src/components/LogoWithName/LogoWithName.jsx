@@ -1,6 +1,6 @@
 import React from "react";
 import { Typography, Box } from "@mui/material";
-import Logo from "../images/Logo";
+import Logo from "../../images/Logo";
 
 export default function LogoWithName({ color }) {
   return (

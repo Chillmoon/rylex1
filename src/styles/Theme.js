@@ -1,8 +1,13 @@
 import { createTheme } from "@mui/material/styles";
 
 export const theme = createTheme({
+  transitions: {
+    // So we have `transition: none;` everywhere
+    create: () => "none",
+  },
   palette: {
     primary: {
+      black: "#0A0B0B",
       white: "#fff",
       main: "#1AAA8D",
       greenActive: "#30B78D",
@@ -26,6 +31,7 @@ export const theme = createTheme({
       fontWeight: "400",
       textTransform: "none !important",
       lineHeight: "23px",
+      textAlign: "center",
     },
   },
 });

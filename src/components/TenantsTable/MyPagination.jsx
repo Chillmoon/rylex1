@@ -1,11 +1,45 @@
-import { Grid, IconButton, Pagination, Typography } from "@mui/material";
-import React, { useState } from "react";
-import ArrowLeft from "../../images/ArrowLeft";
-import ArrowRight from "../../images/ArrowRight";
+import React from "react";
+import {
+  Grid,
+  IconButton,
+  MenuItem,
+  Box,
+  Pagination,
+  Select,
+  Typography,
+} from "@mui/material";
+
 import { theme } from "../../styles/Theme";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import ArrowSelect from "../../images/ArrowSelect";
+import {
+  pagination,
+  paginationArrows,
+  select,
+  selectMenu,
+  useTableStyles,
+} from "../MuiTable/Style";
+import { useTranslation } from "react-i18next";
 
 export default function MyPagination(props) {
-  const { page, rowsPerPage, count, onChangePage } = props;
+  const selectMenuStyle = selectMenu();
+  const paginationClass = pagination();
+  const paginationArrowsClass = paginationArrows();
+  const paginationSelect = select();
+
+  const { t } = useTranslation();
+
+  const styles = useTableStyles();
+  const {
+    page,
+    rowsPerPage,
+    count,
+    onChangePage,
+    rowsPerPageOptions,
+    onChangeRowsPerPage,
+  } = props;
+
   let from = rowsPerPage * page + 1;
   let to = rowsPerPage * (page + 1);
   if (to > count) {
@@ -15,51 +49,119 @@ export default function MyPagination(props) {
     <td>
       <Grid
         container
-        alignItems="center"
-        justify="flex-end"
-        style={{ paddingTop: 8 }}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-end",
+          width: "70vw",
+          marginTop: "30px",
+        }}
       >
-        <Grid item>
-          <IconButton
-            disabled={page === 0}
-            onClick={(e) => onChangePage(e, page - 1)}
-          >
-            <ArrowLeft
-              fontSize="small"
-              color={
-                page === 0
-                  ? theme.palette.grey.grey
-                  : theme.palette.primary.main
-              }
-            />
-          </IconButton>
-        </Grid>
-        <Grid item>
-          <Typography
-            variant="caption"
-            style={{ color: theme.palette.primary.white }}
-          >
-            {from}-{to} of {count}
-          </Typography>
-        </Grid>
-        <Grid item>
-          <IconButton
-            disabled={to >= count}
-            onClick={(e) => onChangePage(e, page + 1)}
-          >
-            <ArrowRight
-              fontSize="small"
-              color={
-                to < count
-                  ? theme.palette.primary.main
-                  : theme.palette.grey.grey
-              }
-            />
-          </IconButton>
-        </Grid>
+        <Select
+          className={paginationSelect.root}
+          value={rowsPerPage}
+          onChange={onChangeRowsPerPage}
+          MenuProps={{
+            getContentAnchorEl: null,
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "center",
+            },
+            transformOrigin: {
+              horizontal: 17,
+              vertical: "bottom",
+            },
+            className: selectMenuStyle.root,
+          }}
+          IconComponent={() => (
+            <Box
+              sx={{
+                fill: theme.palette.primary.main,
+                "& path": {
+                  cursor: "pointer",
+                  fill: theme.palette.primary.main,
+                },
+                fontSize: "30px",
+                margin: "0px 8px 10px 8px",
+              }}
+            >
+              <ArrowSelect />
+            </Box>
+          )}
+        >
+          {rowsPerPageOptions.map((option, index) => (
+            <MenuItem value={option} key={index} disableRipple>
+              {option}
+            </MenuItem>
+          ))}
+        </Select>
+
+        <Typography
+          sx={{
+            color: theme.palette.primary.black,
+            fontSize: "14px",
+            margin: "0px 0px 0px 10px",
+          }}
+        >
+          {t("per_page")}
+        </Typography>
+        <Typography
+          sx={{
+            color: theme.palette.primary.black,
+            fontSize: "14px",
+            margin: "0px 66px 0px 50px",
+          }}
+        >
+          {from}-{to} {t("of")} {count}
+        </Typography>
+        <IconButton
+          sx={{ marginLeft: "-66px" }}
+          className={paginationArrowsClass.root}
+          disabled={page === 0}
+          onClick={(e) => onChangePage(e, page - 1)}
+        >
+          <ChevronLeftIcon />
+        </IconButton>
+        <Pagination
+          className={paginationClass.root}
+          sx={styles.pagination}
+          count={Math.ceil(count / rowsPerPage)}
+          hidePrevButton
+          hideNextButton
+          page={page + 1}
+          variant="outlined"
+          shape="rounded"
+          boundaryCount={1}
+          defaultPage={1}
+          onChange={(event, pageNumber) => {
+            onChangePage(event, pageNumber - 1);
+          }}
+        />
+        <IconButton
+          className={paginationArrowsClass.root}
+          disabled={to >= count}
+          onClick={(e) => onChangePage(e, page + 1)}
+        >
+          <ChevronRightIcon />
+        </IconButton>
       </Grid>
     </td>
   );
+}
+
+{
+  /* <Pagination
+          // className={classes.pagination}
+          // hidePrevButton
+          // hideNextButton
+          shape="rounded"
+          rowsPerPage={10}
+          count={Math.ceil(count / rowsPerPage)}
+          defaultPage={0}
+          page={page}
+          renderItem={(item) => <PaginationItem disableRipple {...item} />}
+          onChange={onChangePage}
+        /> */
 }
 
 // export default function MyPagination(props) {

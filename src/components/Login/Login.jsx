@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import { FormControl, Grid, Link } from "@mui/material";
+import { Form, Formik } from "formik";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Grid, FormControl, Link } from "@mui/material";
-import MyInput from "./Input";
-import MyPasswordInput from "./Input/MyPasswordInput";
-import SignButton from "./Button/SignButton";
-import { LoginSchema } from "./ValidationSchema/ValidationSchema";
-import { Formik, Form } from "formik";
-import { logIn } from "./Axios";
-import PersonOutline from "../images/PersonOutline";
+import PersonOutline from "../../images/PersonOutline";
+import SignButton from "../Button/SignButton";
+import MyInput from "../Input/index";
+import MyPasswordInput from "../Input/MyPasswordInput";
+import { LoginSchema } from "../ValidationSchema/ValidationSchema";
+import { logIn } from "../Axios/Axios";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -24,12 +24,11 @@ export default function Login() {
         logIn(values.username, values.password, () => {
           navigate("/tenants");
         });
-        // setTimeout(tableData, 1000);
       }}
     >
       {({ errors, touched }) => (
         <Form autoComplete="off">
-          <Grid xs={12} display="flex" flexDirection="column">
+          <Grid item xs={12} display="flex" flexDirection="column">
             <FormControl sx={{ width: "45ch" }}>
               <MyInput
                 touched={touched.username}

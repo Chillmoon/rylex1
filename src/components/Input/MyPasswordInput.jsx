@@ -45,26 +45,26 @@ export default function MyPasswordInput({ name, placeholder, error, touched }) {
                 {isRevealPassword ? (
                   <Box
                     sx={{
-                      fill: "#949494",
+                      fill: theme.palette.primary.main,
                       "& path": {
                         cursor: "pointer",
-                        fill: "#949494",
-                      },
-                    }}
-                  >
-                    <VisibilityOff />
-                  </Box>
-                ) : (
-                  <Box
-                    sx={{
-                      fill: "#949494",
-                      "& path": {
-                        cursor: "pointer",
-                        fill: "#949494",
+                        fill: theme.palette.primary.main,
                       },
                     }}
                   >
                     <VisibilityOn />
+                  </Box>
+                ) : (
+                  <Box
+                    sx={{
+                      fill: theme.palette.grey.grey,
+                      "& path": {
+                        cursor: "pointer",
+                        fill: theme.palette.grey.grey,
+                      },
+                    }}
+                  >
+                    <VisibilityOff />
                   </Box>
                 )}
               </IconButton>

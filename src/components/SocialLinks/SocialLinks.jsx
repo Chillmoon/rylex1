@@ -1,7 +1,8 @@
 import React from "react";
 import { Box, Link } from "@mui/material";
-import Facebook from "../images/Facebook";
-import GooglePlus from "../images/GooglePlus";
+import Facebook from "../../images/Facebook";
+import GooglePlus from "../../images/GooglePlus";
+import { theme } from "../../styles/Theme";
 
 export default function SocialLinks() {
   return (
@@ -9,10 +10,10 @@ export default function SocialLinks() {
       <Link href="#">
         <Box
           sx={{
-            fill: "black",
+            fill: theme.palette.primary.black,
             "& path": {
               cursor: "pointer",
-              fill: "black",
+              fill: theme.palette.primary.black,
             },
             display: "inline-block",
             margin: "30px 20px",
@@ -24,10 +25,10 @@ export default function SocialLinks() {
       <Link href="#">
         <Box
           sx={{
-            fill: "black",
+            fill: theme.palette.primary.black,
             "& path": {
               cursor: "pointer",
-              fill: "black",
+              fill: theme.palette.primary.black,
             },
             display: "inline-block",
           }}
