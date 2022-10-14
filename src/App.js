@@ -7,8 +7,6 @@ import SignUp from "./pages/SignUp";
 import Tenants from "./pages/Tenants";
 import CallConnect from "./pages/CallConnect";
 import PrivateRoutes from "./components/ReactRouter/PrivateRoutes";
-import { Provider } from "react-redux";
-import PhoneNumbers from "./pages/PhoneNumbers";
 
 export default function App({ rowData }) {
   return (
@@ -19,10 +17,6 @@ export default function App({ rowData }) {
             <Route path="/tenants" element={<Tenants />} />
             <Route path="/callconnect" element={<CallConnect />} />
             <Route path="/callconnect/:id" element={<CallConnect />} />
-            <Route
-              path="/callconnect/:id/phonenumbers"
-              element={<PhoneNumbers />}
-            />
           </Route>
           <Route path="/" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />

@@ -41,7 +41,6 @@ export default function CallConnectLinks() {
           {t("groups")}
         </Button>
         <Button
-          onSubmit={navigate("/callconnect/:id/phonenumbers")}
           startIcon={<Phone />}
           type="submit"
           sx={classes.buttonLink.nonActive}

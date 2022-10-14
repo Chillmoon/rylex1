@@ -2,12 +2,12 @@ import { Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import React, { useEffect } from "react";
 import { theme } from "../../styles/Theme";
-import ModalTenants from "../Modal/ModalTenants";
 import { useDispatch, useSelector } from "react-redux";
 import { dataTableRedux } from "../../redux/dataTableSlice";
 import { useTranslation } from "react-i18next";
 import MuiTable from "../MuiTable/MuiTable";
 import { test } from "../Axios/Axios";
+import ActionMenu from "./ActionMenu";
 
 export default function MuiTableTenants() {
   const navigate = useNavigate();
@@ -67,7 +67,7 @@ export default function MuiTableTenants() {
         data={data}
         columns={columns}
         handleRowClick={handleRowClick}
-        modal={<ModalTenants />}
+        actionMenu={<ActionMenu />}
       />
     </Box>
   );
