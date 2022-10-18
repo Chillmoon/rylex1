@@ -7,6 +7,13 @@ import { useTranslation } from "react-i18next";
 import MyPagination from "../TenantsTable/MyPagination";
 import { useTableStyles, search } from "./Style";
 
+// type PropsMuiTable = {
+//   data: any,
+//   columns: any,
+//   handleRowClick: any,
+//   actionMenu: any,
+// };
+
 export default function MuiTable({
   data,
   columns,
@@ -45,7 +52,7 @@ export default function MuiTable({
           showFirstLastPageButtons: false,
           headerStyle: {
             backgroundColor: theme.palette.primary.main,
-            color: theme.palette.primary.white,
+            color: theme.palette.common.white,
             fontSize: "16px",
             cursor: "default",
           },
@@ -56,7 +63,7 @@ export default function MuiTable({
           Pagination: (props) => {
             return <MyPagination {...props} />;
           },
-          Action: (props) => actionMenu,
+          Action: (_props) => actionMenu,
         }}
         actions={[
           {

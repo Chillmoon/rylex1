@@ -40,7 +40,7 @@ export default function MuiTableTenants() {
       field: "_id",
 
       cellStyle: {
-        color: theme.palette.primary.greenActive,
+        color: theme.palette.primary.light,
       },
     },
     {
